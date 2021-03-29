@@ -5,8 +5,8 @@ import pandas as pd
 
 from pathlib import Path
 
-from core.data_loading import *
 from core.greedy_algorithm import *
+from auxiliary.data_handler import load_data
 
 if __name__ == "__main__":
 	# Load data
