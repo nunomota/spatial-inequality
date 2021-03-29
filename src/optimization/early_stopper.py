@@ -1,7 +1,21 @@
 import numpy as np
 
 class EarlyStopper:
-    
+    """
+    Class to handle preemptive stopping of an algorithm when no measurable
+    improvement has been registered for a given amount of iterations.
+
+    Attributes:
+    __n_iterations (int): Number of allowed iterations without improvement
+    __tolerance (float): Tolerance for floating point measurement comparison
+    __absolute_min (float): Minimum value registered over all iterations
+    __n_iterations_wo_improvement (int): Current number of iterations with no
+        observed improvement
+
+    Methods:
+    update(value): Records a new value for the tracked metric and updates all
+        variables accordingly.
+    """
     __n_iterations = None
     __tolerance = None
     
@@ -16,6 +30,18 @@ class EarlyStopper:
         self.__n_iterations_wo_improvement = 0
         
     def update(self, value):
+        """
+        Records a new value for the tracked metric and updates all variables
+        accordingly.
+
+        Parameters:
+        value (float): Updated value for tracked metric
+
+        Raises:
+        StopIteration: Whenever more than the specified maximum amount of
+            iterations has elapsed wihtout a measurable improvement to the
+            tracked metric
+        """
         if self.__absolute_min is None:
             self.__absolute_min = value
         else:
