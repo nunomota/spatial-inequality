@@ -116,7 +116,7 @@ def get_neighbouring_districts(district_id, school_info, school_assignment):
 
 def get_school_total_funding(school_id, aug_school_info):
     """
-    Gets (local) funding associated with a school.
+    Gets (total) funding associated with a school.
   
     Parameters: 
     district_id (str): NCES ID of target school (e.g. '010000500889')
@@ -131,7 +131,7 @@ def get_school_total_funding(school_id, aug_school_info):
 
 def get_district_total_funding(district_id, aug_school_info, school_assignment):
     """
-    Gets (local) funding associated with a district, based on
+    Gets (total) funding associated with a district, based on
     provided school district assignment.
   
     Parameters: 
@@ -186,7 +186,7 @@ def get_district_total_students(district_id, aug_school_info, school_assignment)
 
 def get_per_student_funding(district_id, aug_school_info, school_assignment):
     """
-    Gets per-student (local) funding associated with a district, based on
+    Gets per-student (total) funding associated with a district, based on
     provided school district assignment.
   
     Parameters: 
