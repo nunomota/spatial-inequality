@@ -1,6 +1,18 @@
 import pandas as pd
 
 def fix_ncesid(ncesid, mode):
+    """
+    Applies standard formatting (zero padding and typecasting) to
+    both schools' and districts' NCES IDs.
+  
+    Parameters: 
+    ncesid (int): Target NCES ID to fix (e.g. 100005)
+    mode (str): Should be either "school" or "district"
+    
+    Returns: 
+    str: Standardized NCES ID (does not perform zero padding if
+        unknown mode is porvided)
+    """
     padding = {
         "school": 12,
         "district": 7
@@ -8,7 +20,19 @@ def fix_ncesid(ncesid, mode):
     return str(ncesid).zfill(padding)
 
 def remove_cross_state_neighbors(aug_school_info, school_assignment):
-    # Copy data handler references
+    """
+    Removes any neighbouring edge between schools in different states.
+  
+    Parameters: 
+    aug_school_info (pandas.DataFrame): Target school information (containing 
+        neighbouring edges)
+    school_assignment (pandas.DataFrame): Target school assignment (containing
+        state assignment)
+    
+    Returns: 
+    pandas.DataFrame: Refined school information (with cross-state neighbours
+        removed)
+    """
     aug_school_info = aug_school_info.copy()
 
     # Filter out cross-state neighbors
@@ -34,7 +58,20 @@ def remove_cross_state_neighbors(aug_school_info, school_assignment):
     return aug_school_info
 
 def remove_invalid_entries(aug_school_info, school_assignment):
-    # Copy data handler references
+    """
+    Removes any school entries which do not contain information regarding their
+    total funding and/or number students. 
+  
+    Parameters: 
+    aug_school_info (pandas.DataFrame): Target school information (containing 
+        funding and students)
+    school_assignment (pandas.DataFrame): Target school assignment (containing
+        district and state assignments)
+    
+    Returns: 
+    tuple: Refined school information (pandas.DataFrame) and school assignment
+        (pandas.DataFrame)
+    """
     aug_school_info = aug_school_info.copy()
     school_assignment = school_assignment.copy()
 
@@ -68,7 +105,13 @@ def remove_invalid_entries(aug_school_info, school_assignment):
     return aug_school_info, school_assignment
 
 def load_data():
-    # Create DataHandler object
+    """
+    Loads all necessary data regarding school information and school assignment. 
+  
+    Returns: 
+    tuple: School information (pandas.DataFrame) and school assignment
+        (pandas.DataFrame)
+    """
     dh = DataHandler()
     aug_school_info = dh.get_augmented_school_info()
     school_assignment = dh.get_school_assignment()
@@ -78,13 +121,42 @@ def load_data():
     return aug_school_info, school_assignment
 
 class DataHandler:
-    
+    """
+    Class to handle initial data parsing, reading and formatting.
+
+    Attributes:
+    __data_path (str): Root directory from which to read data files
+
+    Methods:
+    __read_file(filename, compression="gzip", encoding="utf-8"): Read raw CSV
+        data file, located inside DataHandler.__data_path.
+    __format_cols(df, type_dict): Formats all columns' values of a DataFrame
+        with their desired variable type.
+    get_school_info(): Read school information from a CSV file into a DataFrame.
+    get_district_info(): Read district information from a CSV file into a
+        DataFrame.
+    get_school_assignment(): Read initial school assignment from a CSV file into
+        a DataFrame.
+    get_augmented_school_info(): Augments school information to also include
+        estimated 'per-student revenue', alongside all other school attributes.
+    """
     __data_path = None
     
     def __init__(self, data_path="../data"):
         self.__data_path = data_path
         
     def __read_file(self, filename, compression="gzip", encoding="utf-8"):
+        """
+        Read raw CSV data file, located inside DataHandler.__data_path.
+      
+        Parameters: 
+        filename (str): Name of file to read (w/ extension)
+        compression (str): Compression algorithm used in the CSV file
+        encoding (str): Character encoding used in the CSV file
+        
+        Returns: 
+        pandas.DataFrame: Resulting DataFrame
+        """
          return pd.read_csv(
             f"{self.__data_path}/{filename}",
             compression=compression,
@@ -92,13 +164,31 @@ class DataHandler:
         )
     
     def __format_cols(self, df, type_dict):
+        """
+        Formats all columns' values of a DataFrame with their desired
+        variable type.
+      
+        Parameters: 
+        df (pandas.DataFrame): Target DataFrame
+        type_dict (dict of str: type): Type mapping for all named columns 
+        
+        Returns: 
+        pandas.DataFrame: Copy of initial DataFrame with typecasted column
+            values
+        """
         formatted_df = df.copy()
         for col_name, dtype in type_dict.items():
             formatted_df[col_name] = formatted_df[col_name].astype(dtype)
         return formatted_df
     
     def get_augmented_school_info(self):
-        # Read data
+        """
+        Augments school information to also include estimated 'per-student
+        revenue', alongside all other school attributes.
+        
+        Returns: 
+        pandas.DataFrame: Resulting DataFrame
+        """
         school_info = self.get_school_info()
         district_info = self.get_district_info()
         school_assignment = self.get_school_assignment()
@@ -108,7 +198,12 @@ class DataHandler:
         return school_info.drop(["district_id"], axis=1)
     
     def get_school_info(self):
-        # Read data
+        """
+        Read school information from a CSV file into a DataFrame.
+        
+        Returns: 
+        pandas.DataFrame: Resulting DataFrame (indexed on "school_id")
+        """
         filename = "school_info.csv"
         df = self.__read_file(filename)
         # Fix NCESID
@@ -127,7 +222,12 @@ class DataHandler:
         return df.set_index("school_id", drop=True)
     
     def get_district_info(self):
-        # Read data
+        """
+        Read district information from a CSV file into a DataFrame.
+        
+        Returns: 
+        pandas.DataFrame: Resulting DataFrame (indexed on "district_id")
+        """
         filename = "district_info.csv"
         df = self.__read_file(filename)
         # Fix NCESID
@@ -145,7 +245,12 @@ class DataHandler:
         return df.set_index("district_id", drop=True)
     
     def get_school_assignment(self):
-        # Read data
+        """
+        Read initial school assignment from a CSV file into a DataFrame.
+        
+        Returns: 
+        pandas.DataFrame: Resulting DataFrame (indexed on "school_id")
+        """
         filename = "school_assignment.csv"
         df = self.__read_file(filename)
         # Fix NCESID
