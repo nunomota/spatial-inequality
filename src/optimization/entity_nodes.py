@@ -233,8 +233,8 @@ class District:
     def __deepcopy__(self):
         """
         Performs a deep copy of the District object (i.e., all schools'
-        references are resolved and their shallow copies are added to the new
-        neighborhood instead).
+        references are resolved and their shallow copies are assigned to the
+        district instead).
 
         Returns:
         District: Deep copy of District object
