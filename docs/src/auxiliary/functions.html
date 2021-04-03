@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>src.auxiliary.functions API documentation</title>
+<meta name="description" content="This file contains all auxilairy functions for our
+algorithm&#39;s implementation. Simple unit tests can be
+found at the bottom, automatically ran when …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.auxiliary.functions</code></h1>
+</header>
+<section id="section-intro">
+<p>This file contains all auxilairy functions for our
+algorithm's implementation. Simple unit tests can be
+found at the bottom, automatically ran when (directly)
+running the script.</p>
+<p>NOTE: For all implemented functions in this script, the
+return statements also include an (often redundant) explicit
+type-casting statement. This is to prevent test failure due
+to pandas' implicit usage of numpy types, which do not typecheck
+with native python types (e.g. utilizing 'isinstance' on a
+'numpy.int64' object will yield 'False' when checking against a
+regular 'int').</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+This file contains all auxilairy functions for our
+algorithm&#39;s implementation. Simple unit tests can be
+found at the bottom, automatically ran when (directly)
+running the script.
+
+NOTE: For all implemented functions in this script, the
+return statements also include an (often redundant) explicit
+type-casting statement. This is to prevent test failure due
+to pandas&#39; implicit usage of numpy types, which do not typecheck
+with native python types (e.g. utilizing &#39;isinstance&#39; on a
+&#39;numpy.int64&#39; object will yield &#39;False&#39; when checking against a
+regular &#39;int&#39;).
+&#34;&#34;&#34;
+import numpy as np
+import pandas as pd
+
+def get_schools_in_state(state_name, school_assignment):
+    &#34;&#34;&#34;
+    Gets all schools currently assigned to a state. 
+  
+    Parameters: 
+    state_name (str): Full name of target state (e.g. &#39;Alabama&#39;)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding schools (returns an empty
+        list in case there are none)
+        
+    &#34;&#34;&#34;
+    return list(school_assignment[school_assignment[&#34;state_name&#34;] == state_name.title()].index.unique().tolist())
+
+def get_districts_in_state(state_name, school_assignment):
+    &#34;&#34;&#34;
+    Gets all districts currently assigned to a state. 
+  
+    Parameters: 
+    state_name (str): Full name of target state (e.g. &#39;Alabama&#39;)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding districts (returns an empty
+        list in case there are none)
+        
+    &#34;&#34;&#34;
+    return list(school_assignment[school_assignment[&#34;state_name&#34;] == state_name.title()][&#34;district_id&#34;].unique().tolist())
+
+def get_schools_in_district(district_id, school_assignment):
+    &#34;&#34;&#34;
+    Gets all schools currently assigned to a district. 
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding schools (returns an empty
+        list in case there are none)
+  
+    &#34;&#34;&#34;
+    return list(school_assignment[school_assignment[&#34;district_id&#34;] == district_id].index.unique().tolist())
+
+def get_neighbouring_schools(school_id, school_info):
+    &#34;&#34;&#34;
+    Gets all schools currently in the neighbourhood of a school
+    (not including the school itself). 
+  
+    Parameters: 
+    school_id (str): NCES ID of target school (e.g. &#39;010000500889&#39;)
+    school_info (pandas.DataFrame): Target school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding schools (returns an empty
+        list in case there are none)
+  
+    &#34;&#34;&#34;
+    parse_neighbours = lambda x: x.split(&#34;,&#34;) if len(x) &gt; 0 else []
+    try:
+        neighbours_string = school_info.loc[school_id][&#34;neighbour_ids&#34;]
+        return list(parse_neighbours(neighbours_string))
+    except KeyError:
+        return list([])
+    
+
+def get_neighbouring_districts(district_id, school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets all districts currently in the neighbourhood of a district
+    (not including the district itself). 
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    school_info (pandas.DataFrame): Target school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding districts (returns an empty
+        list in case there are none)
+  
+    &#34;&#34;&#34;
+    flatten = lambda l: [item for sublist in l for item in sublist]
+    schools_in_district = get_schools_in_district(district_id, school_assignment)
+    all_neighbouring_schools = flatten(map(
+        lambda school_id: get_neighbouring_schools(school_id, school_info),
+        schools_in_district
+    ))
+    neighbouring_districts = school_assignment[school_assignment.index.isin(all_neighbouring_schools)][&#34;district_id&#34;].unique().tolist()
+    if district_id in neighbouring_districts:
+        neighbouring_districts.remove(district_id)
+    return list(neighbouring_districts)
+
+def get_school_total_funding(school_id, aug_school_info):
+    &#34;&#34;&#34;
+    Gets (total) funding associated with a school.
+  
+    Parameters: 
+    district_id (str): NCES ID of target school (e.g. &#39;010000500889&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    float: Single number comprising school-level data
+  
+    &#34;&#34;&#34;
+    return float(aug_school_info.loc[school_id][&#34;adjusted_total_revenue_per_student&#34;] * aug_school_info.loc[school_id][&#34;total_students&#34;])
+
+def get_district_total_funding(district_id, aug_school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets (total) funding associated with a district, based on
+    provided school district assignment.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    float: Single number comprising district-level data
+  
+    &#34;&#34;&#34;
+    schools_in_district = get_schools_in_district(district_id, school_assignment)
+    district_school_info = aug_school_info[aug_school_info.index.isin(schools_in_district)]
+    return float((district_school_info[&#34;adjusted_total_revenue_per_student&#34;] * district_school_info[&#34;total_students&#34;]).sum())
+
+def get_school_total_students(school_id, aug_school_info):
+    &#34;&#34;&#34;
+    Gets total number of students associated with a school.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    int: Single number comprising school-level data
+  
+    &#34;&#34;&#34;
+    return int(aug_school_info.loc[school_id][&#34;total_students&#34;])
+
+def get_district_total_students(district_id, aug_school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets total number of students associated with a district, based on
+    provided school district assignment.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    int: Single number comprising district-level data
+  
+    &#34;&#34;&#34;
+    schools_in_district = get_schools_in_district(district_id, school_assignment)
+    district_school_info = aug_school_info[aug_school_info.index.isin(schools_in_district)]
+    return int(district_school_info[&#34;total_students&#34;].sum())
+
+def get_per_student_funding(district_id, aug_school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets per-student (total) funding associated with a district, based on
+    provided school district assignment.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    float: Single number comprising district-level data
+  
+    &#34;&#34;&#34;
+    total_funding = get_district_total_funding(district_id, aug_school_info, school_assignment)
+    total_students = get_district_total_students(district_id, aug_school_info, school_assignment)
+    return float(total_funding / total_students)
+
+def get_possible_school_transitions(district_id, school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets all possible school transitions between a given district and
+    its neighbouring districts (i.e. if a school has neighbouring
+    schools that belong to a neighbouring district, it is at the border
+    and can easily be assigned to the neighbouring district - while
+    maintaining contiguous district assignments). School transitions
+    can either happen &#39;from&#39; or &#39;to&#39; the provided district.
+  
+    NOTE: The contiguous assumption stated before, although generally
+    true, may not be so in all instances. It can be that by assigning
+    one school to another district, we isolate another school from the
+    district where it originated from. These cases may need to be handled.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    school_info (pandas.DataFrame): Target school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: List of triplets containing (i) the ID of a school to be
+        transitioned, (ii) the ID of the provenance district, and
+        (iii) the ID of th destination district
+  
+    &#34;&#34;&#34;
+    school_transitions = []
+    schools_in_district = get_schools_in_district(district_id, school_assignment)
+    for school_id in schools_in_district:
+        school_neighbourhood = get_neighbouring_schools(school_id, school_info)
+        school_neighbourhood_districts = school_assignment[school_assignment.index.isin(school_neighbourhood)][&#34;district_id&#34;].values
+        for neighbour_school_id, neighbour_district_id in zip(school_neighbourhood, school_neighbourhood_districts):
+            # If neighbouring school is within the same district ignore
+            if district_id == neighbour_district_id: continue
+            # Otherwise, either school could be transitioned
+            school_transitions.append((school_id, district_id, neighbour_district_id))
+            school_transitions.append((neighbour_school_id, neighbour_district_id, district_id))
+    return list(school_transitions)
+
+if __name__ == &#34;__main__&#34;:
+    
+    ###################
+    # Dummy DataFrames
+    ###################
+    
+    dummy_school_info = pd.DataFrame({
+        &#34;school_id&#34;: [&#34;010000500889&#34;, &#34;010000500890&#34;, &#34;010000500891&#34;],
+        &#34;neighbour_ids&#34;: [&#34;010000500890&#34;, &#34;010000500889,010000500891&#34;, &#34;010000500890&#34;],
+        &#34;school_name&#34;: [&#34;School A&#34;, &#34;School B&#34;, &#34;School C&#34;],
+        &#34;total_students&#34;: [100, 200, 150]
+    }).set_index(&#34;school_id&#34;)
+    
+    dummy_aug_school_info = pd.DataFrame({
+        &#34;school_id&#34;: [&#34;010000500889&#34;, &#34;010000500890&#34;, &#34;010000500891&#34;],
+        &#34;neighbour_ids&#34;: [&#34;010000500890&#34;, &#34;010000500889,010000500891&#34;, &#34;010000500890&#34;],
+        &#34;school_name&#34;: [&#34;School A&#34;, &#34;School B&#34;, &#34;School C&#34;],
+        &#34;total_students&#34;: [100, 200, 150],
+        &#34;adjusted_local_revenue_per_student&#34;: [20.0, 30.0, 40.0]
+    }).set_index(&#34;school_id&#34;)
+    
+    dummy_school_assignment = pd.DataFrame({
+        &#34;school_id&#34;: [&#34;010000500889&#34;, &#34;010000500890&#34;, &#34;010000500891&#34;],
+        &#34;district_id&#34;: [&#34;0100005&#34;, &#34;0100005&#34;, &#34;0100006&#34;],
+        &#34;state_name&#34;: [&#34;State A&#34;, &#34;State A&#34;, &#34;State B&#34;]
+    }).set_index(&#34;school_id&#34;)
+    
+    ###################
+    # Utility Functions
+    ###################
+    
+    # Utility functions for descriptive assertions
+    def assert_type(dtype, var):
+        assert isinstance(var, dtype), f&#34;Wrong type. Expected &#39;{dtype}&#39;, got &#39;{type(var)}&#39;.&#34;
+        return True
+        
+    def assert_result(cond, actual, target):
+        assert cond, f&#34;Wrong result. Expected &#39;{target}&#39;, got &#39;{actual}&#39;.&#34;
+        return True
+    
+    # Utility functions for variables&#39; comparison
+    def equal_ints(actual, target):
+        assert_type(int, actual)
+        assert_type(int, target)
+        return assert_result(actual == target, actual, target)
+        
+    def equal_floats(actual, target):
+        assert_type(float, actual)
+        assert_type(float, target)
+        return assert_result(np.isclose(actual, target), actual, target)
+        
+    def equal_lists(actual, target, comp=lambda x,y: x==y):
+        assert_type(list, actual)
+        assert_type(list, target)
+        return assert_result(len(actual) == len(target) and all([comp(a,t) for a,t in zip(actual, target)]), actual, target)
+        
+    def equal_tuples(actual, target, comp=lambda x,y: x==y):
+        assert_type(tuple, actual)
+        assert_type(tuple, target)
+        return assert_result(len(actual) == len(target) and all([comp(a,t) for a,t in zip(actual, target)]), actual, target)
+    
+    ###################
+    # Unit Tests
+    ###################
+    
+    # Initial testing print
+    print(&#34;Testing all functions:&#34;)
+    
+    # Test &#39;get_schools_in_state&#39;
+    actual_result = get_schools_in_state(&#34;State A&#34;, dummy_school_assignment)
+    target_result = [&#34;010000500889&#34;, &#34;010000500890&#34;]
+    equal_lists(actual_result, target_result)
+    print(&#34;\t&#39;get_schools_in_state&#39;: OK&#34;)
+    
+    # Test &#39;get_districts_in_state&#39;
+    actual_result = get_districts_in_state(&#34;State A&#34;, dummy_school_assignment)
+    target_result = [&#34;0100005&#34;]
+    equal_lists(actual_result, target_result)
+    print(&#34;\t&#39;get_districts_in_state&#39;: OK&#34;)
+    
+    # Test &#39;get_schools_in_district&#39;
+    actual_result = get_schools_in_district(&#34;0100005&#34;, dummy_school_assignment)
+    target_result = [&#34;010000500889&#34;, &#34;010000500890&#34;]
+    equal_lists(actual_result, target_result)
+    print(&#34;\t&#39;get_schools_in_district&#39;: OK&#34;)
+    
+    # Test &#39;get_neighbouring_schools&#39;
+    actual_result = get_neighbouring_schools(&#34;010000500889&#34;, dummy_school_info)
+    target_result = [&#34;010000500890&#34;]
+    equal_lists(actual_result, target_result)
+    print(&#34;\t&#39;get_neighbouring_schools&#39;: OK&#34;)
+    
+    # Test &#39;get_neighbouring_districts&#39;
+    actual_result = get_neighbouring_districts(&#34;0100005&#34;, dummy_school_info, dummy_school_assignment)
+    target_result = [&#34;0100006&#34;]
+    equal_lists(actual_result, target_result)
+    print(&#34;\t&#39;get_neighbouring_districts&#39;: OK&#34;)
+    
+    # Test &#39;get_school_total_funding&#39;
+    actual_result = get_school_total_funding(&#34;010000500889&#34;, dummy_aug_school_info)
+    target_result = 20.0
+    equal_floats(actual_result, target_result)
+    print(&#34;\t&#39;get_school_total_funding&#39;: OK&#34;)
+    
+    # Test &#39;get_district_total_funding&#39;
+    actual_result = get_district_total_funding(&#34;0100005&#34;, dummy_aug_school_info, dummy_school_assignment)
+    target_result = 8000.0
+    equal_floats(actual_result, target_result)
+    print(&#34;\t&#39;get_district_total_funding&#39;: OK&#34;)
+    
+    # Test &#39;get_school_total_students&#39;
+    actual_result = get_school_total_students(&#34;010000500889&#34;, dummy_aug_school_info)
+    target_result = 100
+    equal_ints(actual_result, target_result)
+    print(&#34;\t&#39;get_school_total_students&#39;: OK&#34;)
+    
+    # Test &#39;get_district_total_students&#39;
+    actual_result = get_district_total_students(&#34;0100005&#34;, dummy_aug_school_info, dummy_school_assignment)
+    target_result = 300
+    equal_ints(actual_result, target_result)
+    print(&#34;\t&#39;get_district_total_students&#39;: OK&#34;)
+    
+    # Test &#39;get_per_student_funding&#39;
+    actual_result = get_per_student_funding(&#34;0100005&#34;, dummy_aug_school_info, dummy_school_assignment)
+    target_result = 8000.0 / 300
+    equal_floats(actual_result, target_result)
+    print(&#34;\t&#39;get_per_student_funding&#39;: OK&#34;)
+    
+    # Test &#39;get_possible_school_transitions&#39;
+    actual_result = get_possible_school_transitions(&#34;0100005&#34;, dummy_school_info, dummy_school_assignment)
+    target_result = [(&#34;010000500890&#34;, &#34;0100005&#34;, &#34;0100006&#34;), (&#34;010000500891&#34;, &#34;0100006&#34;, &#34;0100005&#34;)]
+    equal_lists(actual_result, target_result, equal_tuples)
+    print(&#34;\t&#39;get_possible_school_transitions&#39;: OK&#34;)
+    
+    # Final success print
+    print(&#34;All tests passed!&#34;)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="src.auxiliary.functions.get_district_total_funding"><code class="name flex">
+<span>def <span class="ident">get_district_total_funding</span></span>(<span>district_id, aug_school_info, school_assignment)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets (total) funding associated with a district, based on
+provided school district assignment.</p>
+<p>Parameters:
+district_id (str): NCES ID of target district (e.g. '0100005')
+aug_school_info (pandas.DataFrame): Target augmented school information
+(as formatted by auxiliary.data_handler.DataHandler)
+school_assignment (pandas.DataFrame): Target school
+assignment (as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+float: Single number comprising district-level data</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_district_total_funding(district_id, aug_school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets (total) funding associated with a district, based on
+    provided school district assignment.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    float: Single number comprising district-level data
+  
+    &#34;&#34;&#34;
+    schools_in_district = get_schools_in_district(district_id, school_assignment)
+    district_school_info = aug_school_info[aug_school_info.index.isin(schools_in_district)]
+    return float((district_school_info[&#34;adjusted_total_revenue_per_student&#34;] * district_school_info[&#34;total_students&#34;]).sum())</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_district_total_students"><code class="name flex">
+<span>def <span class="ident">get_district_total_students</span></span>(<span>district_id, aug_school_info, school_assignment)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets total number of students associated with a district, based on
+provided school district assignment.</p>
+<p>Parameters:
+district_id (str): NCES ID of target district (e.g. '0100005')
+aug_school_info (pandas.DataFrame): Target augmented school information
+(as formatted by auxiliary.data_handler.DataHandler)
+school_assignment (pandas.DataFrame): Target school
+assignment (as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+int: Single number comprising district-level data</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_district_total_students(district_id, aug_school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets total number of students associated with a district, based on
+    provided school district assignment.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    int: Single number comprising district-level data
+  
+    &#34;&#34;&#34;
+    schools_in_district = get_schools_in_district(district_id, school_assignment)
+    district_school_info = aug_school_info[aug_school_info.index.isin(schools_in_district)]
+    return int(district_school_info[&#34;total_students&#34;].sum())</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_districts_in_state"><code class="name flex">
+<span>def <span class="ident">get_districts_in_state</span></span>(<span>state_name, school_assignment)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all districts currently assigned to a state. </p>
+<p>Parameters:
+state_name (str): Full name of target state (e.g. 'Alabama')
+school_assignment (pandas.DataFrame): Target school
+assignment (as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+list: All NCES IDs for corresponding districts (returns an empty
+list in case there are none)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_districts_in_state(state_name, school_assignment):
+    &#34;&#34;&#34;
+    Gets all districts currently assigned to a state. 
+  
+    Parameters: 
+    state_name (str): Full name of target state (e.g. &#39;Alabama&#39;)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding districts (returns an empty
+        list in case there are none)
+        
+    &#34;&#34;&#34;
+    return list(school_assignment[school_assignment[&#34;state_name&#34;] == state_name.title()][&#34;district_id&#34;].unique().tolist())</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_neighbouring_districts"><code class="name flex">
+<span>def <span class="ident">get_neighbouring_districts</span></span>(<span>district_id, school_info, school_assignment)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all districts currently in the neighbourhood of a district
+(not including the district itself). </p>
+<p>Parameters:
+district_id (str): NCES ID of target district (e.g. '0100005')
+school_info (pandas.DataFrame): Target school information
+(as formatted by auxiliary.data_handler.DataHandler)
+school_assignment (pandas.DataFrame): Target school
+assignment (as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+list: All NCES IDs for corresponding districts (returns an empty
+list in case there are none)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_neighbouring_districts(district_id, school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets all districts currently in the neighbourhood of a district
+    (not including the district itself). 
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    school_info (pandas.DataFrame): Target school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding districts (returns an empty
+        list in case there are none)
+  
+    &#34;&#34;&#34;
+    flatten = lambda l: [item for sublist in l for item in sublist]
+    schools_in_district = get_schools_in_district(district_id, school_assignment)
+    all_neighbouring_schools = flatten(map(
+        lambda school_id: get_neighbouring_schools(school_id, school_info),
+        schools_in_district
+    ))
+    neighbouring_districts = school_assignment[school_assignment.index.isin(all_neighbouring_schools)][&#34;district_id&#34;].unique().tolist()
+    if district_id in neighbouring_districts:
+        neighbouring_districts.remove(district_id)
+    return list(neighbouring_districts)</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_neighbouring_schools"><code class="name flex">
+<span>def <span class="ident">get_neighbouring_schools</span></span>(<span>school_id, school_info)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all schools currently in the neighbourhood of a school
+(not including the school itself). </p>
+<p>Parameters:
+school_id (str): NCES ID of target school (e.g. '010000500889')
+school_info (pandas.DataFrame): Target school information
+(as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+list: All NCES IDs for corresponding schools (returns an empty
+list in case there are none)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_neighbouring_schools(school_id, school_info):
+    &#34;&#34;&#34;
+    Gets all schools currently in the neighbourhood of a school
+    (not including the school itself). 
+  
+    Parameters: 
+    school_id (str): NCES ID of target school (e.g. &#39;010000500889&#39;)
+    school_info (pandas.DataFrame): Target school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding schools (returns an empty
+        list in case there are none)
+  
+    &#34;&#34;&#34;
+    parse_neighbours = lambda x: x.split(&#34;,&#34;) if len(x) &gt; 0 else []
+    try:
+        neighbours_string = school_info.loc[school_id][&#34;neighbour_ids&#34;]
+        return list(parse_neighbours(neighbours_string))
+    except KeyError:
+        return list([])</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_per_student_funding"><code class="name flex">
+<span>def <span class="ident">get_per_student_funding</span></span>(<span>district_id, aug_school_info, school_assignment)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets per-student (total) funding associated with a district, based on
+provided school district assignment.</p>
+<p>Parameters:
+district_id (str): NCES ID of target district (e.g. '0100005')
+aug_school_info (pandas.DataFrame): Target augmented school information
+(as formatted by auxiliary.data_handler.DataHandler)
+school_assignment (pandas.DataFrame): Target school
+assignment (as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+float: Single number comprising district-level data</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_per_student_funding(district_id, aug_school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets per-student (total) funding associated with a district, based on
+    provided school district assignment.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    float: Single number comprising district-level data
+  
+    &#34;&#34;&#34;
+    total_funding = get_district_total_funding(district_id, aug_school_info, school_assignment)
+    total_students = get_district_total_students(district_id, aug_school_info, school_assignment)
+    return float(total_funding / total_students)</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_possible_school_transitions"><code class="name flex">
+<span>def <span class="ident">get_possible_school_transitions</span></span>(<span>district_id, school_info, school_assignment)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all possible school transitions between a given district and
+its neighbouring districts (i.e. if a school has neighbouring
+schools that belong to a neighbouring district, it is at the border
+and can easily be assigned to the neighbouring district - while
+maintaining contiguous district assignments). School transitions
+can either happen 'from' or 'to' the provided district.</p>
+<p>NOTE: The contiguous assumption stated before, although generally
+true, may not be so in all instances. It can be that by assigning
+one school to another district, we isolate another school from the
+district where it originated from. These cases may need to be handled.</p>
+<p>Parameters:
+district_id (str): NCES ID of target district (e.g. '0100005')
+school_info (pandas.DataFrame): Target school information
+(as formatted by auxiliary.data_handler.DataHandler)
+school_assignment (pandas.DataFrame): Target school
+assignment (as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+list: List of triplets containing (i) the ID of a school to be
+transitioned, (ii) the ID of the provenance district, and
+(iii) the ID of th destination district</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_possible_school_transitions(district_id, school_info, school_assignment):
+    &#34;&#34;&#34;
+    Gets all possible school transitions between a given district and
+    its neighbouring districts (i.e. if a school has neighbouring
+    schools that belong to a neighbouring district, it is at the border
+    and can easily be assigned to the neighbouring district - while
+    maintaining contiguous district assignments). School transitions
+    can either happen &#39;from&#39; or &#39;to&#39; the provided district.
+  
+    NOTE: The contiguous assumption stated before, although generally
+    true, may not be so in all instances. It can be that by assigning
+    one school to another district, we isolate another school from the
+    district where it originated from. These cases may need to be handled.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    school_info (pandas.DataFrame): Target school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: List of triplets containing (i) the ID of a school to be
+        transitioned, (ii) the ID of the provenance district, and
+        (iii) the ID of th destination district
+  
+    &#34;&#34;&#34;
+    school_transitions = []
+    schools_in_district = get_schools_in_district(district_id, school_assignment)
+    for school_id in schools_in_district:
+        school_neighbourhood = get_neighbouring_schools(school_id, school_info)
+        school_neighbourhood_districts = school_assignment[school_assignment.index.isin(school_neighbourhood)][&#34;district_id&#34;].values
+        for neighbour_school_id, neighbour_district_id in zip(school_neighbourhood, school_neighbourhood_districts):
+            # If neighbouring school is within the same district ignore
+            if district_id == neighbour_district_id: continue
+            # Otherwise, either school could be transitioned
+            school_transitions.append((school_id, district_id, neighbour_district_id))
+            school_transitions.append((neighbour_school_id, neighbour_district_id, district_id))
+    return list(school_transitions)</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_school_total_funding"><code class="name flex">
+<span>def <span class="ident">get_school_total_funding</span></span>(<span>school_id, aug_school_info)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets (total) funding associated with a school.</p>
+<p>Parameters:
+district_id (str): NCES ID of target school (e.g. '010000500889')
+aug_school_info (pandas.DataFrame): Target augmented school information
+(as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+float: Single number comprising school-level data</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_school_total_funding(school_id, aug_school_info):
+    &#34;&#34;&#34;
+    Gets (total) funding associated with a school.
+  
+    Parameters: 
+    district_id (str): NCES ID of target school (e.g. &#39;010000500889&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    float: Single number comprising school-level data
+  
+    &#34;&#34;&#34;
+    return float(aug_school_info.loc[school_id][&#34;adjusted_total_revenue_per_student&#34;] * aug_school_info.loc[school_id][&#34;total_students&#34;])</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_school_total_students"><code class="name flex">
+<span>def <span class="ident">get_school_total_students</span></span>(<span>school_id, aug_school_info)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets total number of students associated with a school.</p>
+<p>Parameters:
+district_id (str): NCES ID of target district (e.g. '0100005')
+aug_school_info (pandas.DataFrame): Target augmented school information
+(as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+int: Single number comprising school-level data</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_school_total_students(school_id, aug_school_info):
+    &#34;&#34;&#34;
+    Gets total number of students associated with a school.
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    aug_school_info (pandas.DataFrame): Target augmented school information
+        (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    int: Single number comprising school-level data
+  
+    &#34;&#34;&#34;
+    return int(aug_school_info.loc[school_id][&#34;total_students&#34;])</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_schools_in_district"><code class="name flex">
+<span>def <span class="ident">get_schools_in_district</span></span>(<span>district_id, school_assignment)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all schools currently assigned to a district. </p>
+<p>Parameters:
+district_id (str): NCES ID of target district (e.g. '0100005')
+school_assignment (pandas.DataFrame): Target school
+assignment (as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+list: All NCES IDs for corresponding schools (returns an empty
+list in case there are none)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_schools_in_district(district_id, school_assignment):
+    &#34;&#34;&#34;
+    Gets all schools currently assigned to a district. 
+  
+    Parameters: 
+    district_id (str): NCES ID of target district (e.g. &#39;0100005&#39;)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding schools (returns an empty
+        list in case there are none)
+  
+    &#34;&#34;&#34;
+    return list(school_assignment[school_assignment[&#34;district_id&#34;] == district_id].index.unique().tolist())</code></pre>
+</details>
+</dd>
+<dt id="src.auxiliary.functions.get_schools_in_state"><code class="name flex">
+<span>def <span class="ident">get_schools_in_state</span></span>(<span>state_name, school_assignment)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all schools currently assigned to a state. </p>
+<p>Parameters:
+state_name (str): Full name of target state (e.g. 'Alabama')
+school_assignment (pandas.DataFrame): Target school
+assignment (as formatted by auxiliary.data_handler.DataHandler)</p>
+<p>Returns:
+list: All NCES IDs for corresponding schools (returns an empty
+list in case there are none)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_schools_in_state(state_name, school_assignment):
+    &#34;&#34;&#34;
+    Gets all schools currently assigned to a state. 
+  
+    Parameters: 
+    state_name (str): Full name of target state (e.g. &#39;Alabama&#39;)
+    school_assignment (pandas.DataFrame): Target school
+        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    
+    Returns: 
+    list: All NCES IDs for corresponding schools (returns an empty
+        list in case there are none)
+        
+    &#34;&#34;&#34;
+    return list(school_assignment[school_assignment[&#34;state_name&#34;] == state_name.title()].index.unique().tolist())</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src.auxiliary" href="index.html">src.auxiliary</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="src.auxiliary.functions.get_district_total_funding" href="#src.auxiliary.functions.get_district_total_funding">get_district_total_funding</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_district_total_students" href="#src.auxiliary.functions.get_district_total_students">get_district_total_students</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_districts_in_state" href="#src.auxiliary.functions.get_districts_in_state">get_districts_in_state</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_neighbouring_districts" href="#src.auxiliary.functions.get_neighbouring_districts">get_neighbouring_districts</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_neighbouring_schools" href="#src.auxiliary.functions.get_neighbouring_schools">get_neighbouring_schools</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_per_student_funding" href="#src.auxiliary.functions.get_per_student_funding">get_per_student_funding</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_possible_school_transitions" href="#src.auxiliary.functions.get_possible_school_transitions">get_possible_school_transitions</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_school_total_funding" href="#src.auxiliary.functions.get_school_total_funding">get_school_total_funding</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_school_total_students" href="#src.auxiliary.functions.get_school_total_students">get_school_total_students</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_schools_in_district" href="#src.auxiliary.functions.get_schools_in_district">get_schools_in_district</a></code></li>
+<li><code><a title="src.auxiliary.functions.get_schools_in_state" href="#src.auxiliary.functions.get_schools_in_state">get_schools_in_state</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
