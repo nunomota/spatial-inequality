@@ -14,7 +14,7 @@ from optimization.lookup import Lookup
 from optimization.run_metrics import RunMetrics
 
 # Initialize logger
-logging.basicConfig(filename='../logs/debug.log', level=logging.INFO)
+#logging.basicConfig(filename='../logs/debug.log', level=logging.INFO)
 
 def greedily_pick_redistricting_moves(district, lookup, min_schools_per_district, max_schools_per_district):
     """

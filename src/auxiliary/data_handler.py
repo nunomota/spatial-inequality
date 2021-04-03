@@ -157,7 +157,7 @@ class DataHandler:
         Returns: 
         pandas.DataFrame: Resulting DataFrame
         """
-         return pd.read_csv(
+        return pd.read_csv(
             f"{self.__data_path}/{filename}",
             compression=compression,
             encoding=encoding
