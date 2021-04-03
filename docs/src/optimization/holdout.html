@@ -12,6 +12,7 @@
 <style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
 <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
 <script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
@@ -35,12 +36,8 @@ class _HoldoutQueueItemWrapper:
     tag.
 
     Attributes:
-    __item (Object): Stored item
-    __tag (Object): Stored tag
-
-    Methods:
-    get_data(): Getter method for the stored (unmodified) item.
-    get_tag(): Getter method for the stored item&#39;s tag.
+        __item (Object): Stored item.
+        __tag (Object): Stored tag.
     &#34;&#34;&#34;
     __item = None
     __tag = None
@@ -54,7 +51,7 @@ class _HoldoutQueueItemWrapper:
         Getter method for the stored (unmodified) item.
 
         Returns:
-        Object: Unmodified stored item
+            Object: Unmodified stored item.
         &#34;&#34;&#34;
         return self.__item
     
@@ -63,7 +60,7 @@ class _HoldoutQueueItemWrapper:
         Getter method for the stored item&#39;s tag.
 
         Returns:
-        Object: Unmodified stored tag
+            Object: Unmodified stored tag.
         &#34;&#34;&#34;
         return self.__tag
         
@@ -84,31 +81,21 @@ class HoldoutQueue:
     this class can be &#39;recycled&#39;, swapping the primary and leftover queues.
 
     Attributes:
-    __primary_queue (Queue): Underlying primary queue
-    __leftover_queue (Queue): Unerlying leftover queue
-    __get_item_tag (function): Function to calculate an item&#39;s tag
-    __is_valid (function): Function to validate an item (based on its tag)
-
-    Methods:
-    recycle(): Recycles the holdout queue, swapping the primary and leftover
-        queues.
-    enqueue(item): Wraps a new item with _HoldoutQueueItemWrapper and adds it at
-        the end of the holdout queue.
-    dequeue(item): Retrieves the first valid _HoldoutQueueItemWrapper from the
-        beginning of the holdout queue.
-    get_primary_queue(): Getter method for the holdout queue&#39;s primary queue.
-    __is_empty(): Checks whether the primary queue is empty.
+        __primary_queue (Queue): Underlying primary queue.
+        __leftover_queue (Queue): Unerlying leftover queue.
+        __get_item_tag (function): Function to calculate an item&#39;s tag.
+        __is_valid (function): Function to validate an item (based on its tag).
 
     Example:
-    &gt;&gt;&gt; def is_even(n):
-    ...     return n%2 == 0
-    &gt;&gt;&gt; holdout_queue = HoldoutQueue(is_valid=is_even)
-    &gt;&gt;&gt; for i in range(5):
-    ...     holdout_queue.enqueue(i)
-    &gt;&gt;&gt; print(holdout_queue.dequeue())
-    2
-    &gt;&gt;&gt; print(holdout_queue.dequeue())
-    4
+        &gt;&gt;&gt; def is_even(n):
+        ...     return n%2 == 0
+        &gt;&gt;&gt; holdout_queue = HoldoutQueue(is_valid=is_even)
+        &gt;&gt;&gt; for i in range(5):
+        ...     holdout_queue.enqueue(i)
+        &gt;&gt;&gt; print(holdout_queue.dequeue())
+        2
+        &gt;&gt;&gt; print(holdout_queue.dequeue())
+        4
     &#34;&#34;&#34;
     __primary_queue = None
     __leftover_queue = None
@@ -132,8 +119,8 @@ class HoldoutQueue:
         Wraps a new item with _HoldoutQueueItemWrapper and adds it at the end of
         the holdout queue.
 
-        Parameters:
-        item (Object): Item to be added
+        Args:
+            item (Object): Item to be added.
         &#34;&#34;&#34;
         item_wrapper = _HoldoutQueueItemWrapper(
             item,
@@ -146,7 +133,7 @@ class HoldoutQueue:
         Getter method for the holdout queue&#39;s primary queue.
 
         Returns:
-        Queue: Primary queue
+            Queue: Primary queue.
         &#34;&#34;&#34;
         return self.__primary_queue
         
@@ -156,8 +143,8 @@ class HoldoutQueue:
         the holdout queue.
 
         Returns:
-        Object: First valid item from the primary queue, or None if primary
-            queue is empty
+            Object: First valid item from the primary queue, or None if primary
+                queue is empty.
         &#34;&#34;&#34;
         while True:
             if self.__is_empty():
@@ -172,7 +159,7 @@ class HoldoutQueue:
         Checks whether the primary queue is empty.
 
         Returns:
-        bool: &#39;true&#39; if primary queue is empty, &#39;false&#39; otherwise
+            bool: &#39;true&#39; if primary queue is empty, &#39;false&#39; otherwise.
         &#34;&#34;&#34;
         return self.__primary_queue.empty()</code></pre>
 </details>
@@ -203,21 +190,18 @@ dequeued from. The second queue (i.e., leftover queue) is where all items
 dequeued from the former queue get enqueued in case they do not validate the
 specified condition. When the primary queue becomes empty, then instances of
 this class can be 'recycled', swapping the primary and leftover queues.</p>
-<p>Attributes:
-__primary_queue (Queue): Underlying primary queue
-__leftover_queue (Queue): Unerlying leftover queue
-__get_item_tag (function): Function to calculate an item's tag
-__is_valid (function): Function to validate an item (based on its tag)</p>
-<p>Methods:
-recycle(): Recycles the holdout queue, swapping the primary and leftover
-queues.
-enqueue(item): Wraps a new item with _HoldoutQueueItemWrapper and adds it at
-the end of the holdout queue.
-dequeue(item): Retrieves the first valid _HoldoutQueueItemWrapper from the
-beginning of the holdout queue.
-get_primary_queue(): Getter method for the holdout queue's primary queue.
-__is_empty(): Checks whether the primary queue is empty.</p>
-<p>Example:</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>__primary_queue</code></strong> :&ensp;<code>Queue</code></dt>
+<dd>Underlying primary queue.</dd>
+<dt><strong><code>__leftover_queue</code></strong> :&ensp;<code>Queue</code></dt>
+<dd>Unerlying leftover queue.</dd>
+<dt><strong><code>__get_item_tag</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function to calculate an item's tag.</dd>
+<dt><strong><code>__is_valid</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function to validate an item (based on its tag).</dd>
+</dl>
+<h2 id="example">Example</h2>
 <pre><code class="language-python-repl">&gt;&gt;&gt; def is_even(n):
 ...     return n%2 == 0
 &gt;&gt;&gt; holdout_queue = HoldoutQueue(is_valid=is_even)
@@ -249,31 +233,21 @@ __is_empty(): Checks whether the primary queue is empty.</p>
     this class can be &#39;recycled&#39;, swapping the primary and leftover queues.
 
     Attributes:
-    __primary_queue (Queue): Underlying primary queue
-    __leftover_queue (Queue): Unerlying leftover queue
-    __get_item_tag (function): Function to calculate an item&#39;s tag
-    __is_valid (function): Function to validate an item (based on its tag)
-
-    Methods:
-    recycle(): Recycles the holdout queue, swapping the primary and leftover
-        queues.
-    enqueue(item): Wraps a new item with _HoldoutQueueItemWrapper and adds it at
-        the end of the holdout queue.
-    dequeue(item): Retrieves the first valid _HoldoutQueueItemWrapper from the
-        beginning of the holdout queue.
-    get_primary_queue(): Getter method for the holdout queue&#39;s primary queue.
-    __is_empty(): Checks whether the primary queue is empty.
+        __primary_queue (Queue): Underlying primary queue.
+        __leftover_queue (Queue): Unerlying leftover queue.
+        __get_item_tag (function): Function to calculate an item&#39;s tag.
+        __is_valid (function): Function to validate an item (based on its tag).
 
     Example:
-    &gt;&gt;&gt; def is_even(n):
-    ...     return n%2 == 0
-    &gt;&gt;&gt; holdout_queue = HoldoutQueue(is_valid=is_even)
-    &gt;&gt;&gt; for i in range(5):
-    ...     holdout_queue.enqueue(i)
-    &gt;&gt;&gt; print(holdout_queue.dequeue())
-    2
-    &gt;&gt;&gt; print(holdout_queue.dequeue())
-    4
+        &gt;&gt;&gt; def is_even(n):
+        ...     return n%2 == 0
+        &gt;&gt;&gt; holdout_queue = HoldoutQueue(is_valid=is_even)
+        &gt;&gt;&gt; for i in range(5):
+        ...     holdout_queue.enqueue(i)
+        &gt;&gt;&gt; print(holdout_queue.dequeue())
+        2
+        &gt;&gt;&gt; print(holdout_queue.dequeue())
+        4
     &#34;&#34;&#34;
     __primary_queue = None
     __leftover_queue = None
@@ -297,8 +271,8 @@ __is_empty(): Checks whether the primary queue is empty.</p>
         Wraps a new item with _HoldoutQueueItemWrapper and adds it at the end of
         the holdout queue.
 
-        Parameters:
-        item (Object): Item to be added
+        Args:
+            item (Object): Item to be added.
         &#34;&#34;&#34;
         item_wrapper = _HoldoutQueueItemWrapper(
             item,
@@ -311,7 +285,7 @@ __is_empty(): Checks whether the primary queue is empty.</p>
         Getter method for the holdout queue&#39;s primary queue.
 
         Returns:
-        Queue: Primary queue
+            Queue: Primary queue.
         &#34;&#34;&#34;
         return self.__primary_queue
         
@@ -321,8 +295,8 @@ __is_empty(): Checks whether the primary queue is empty.</p>
         the holdout queue.
 
         Returns:
-        Object: First valid item from the primary queue, or None if primary
-            queue is empty
+            Object: First valid item from the primary queue, or None if primary
+                queue is empty.
         &#34;&#34;&#34;
         while True:
             if self.__is_empty():
@@ -337,7 +311,7 @@ __is_empty(): Checks whether the primary queue is empty.</p>
         Checks whether the primary queue is empty.
 
         Returns:
-        bool: &#39;true&#39; if primary queue is empty, &#39;false&#39; otherwise
+            bool: &#39;true&#39; if primary queue is empty, &#39;false&#39; otherwise.
         &#34;&#34;&#34;
         return self.__primary_queue.empty()</code></pre>
 </details>
@@ -349,9 +323,12 @@ __is_empty(): Checks whether the primary queue is empty.</p>
 <dd>
 <div class="desc"><p>Retrieves the first valid _HoldoutQueueItemWrapper from the beginning of
 the holdout queue.</p>
-<p>Returns:
-Object: First valid item from the primary queue, or None if primary
-queue is empty</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Object</code></dt>
+<dd>First valid item from the primary queue, or None if primary
+queue is empty.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -362,8 +339,8 @@ queue is empty</p></div>
     the holdout queue.
 
     Returns:
-    Object: First valid item from the primary queue, or None if primary
-        queue is empty
+        Object: First valid item from the primary queue, or None if primary
+            queue is empty.
     &#34;&#34;&#34;
     while True:
         if self.__is_empty():
@@ -380,8 +357,11 @@ queue is empty</p></div>
 <dd>
 <div class="desc"><p>Wraps a new item with _HoldoutQueueItemWrapper and adds it at the end of
 the holdout queue.</p>
-<p>Parameters:
-item (Object): Item to be added</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>item</code></strong> :&ensp;<code>Object</code></dt>
+<dd>Item to be added.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -391,8 +371,8 @@ item (Object): Item to be added</p></div>
     Wraps a new item with _HoldoutQueueItemWrapper and adds it at the end of
     the holdout queue.
 
-    Parameters:
-    item (Object): Item to be added
+    Args:
+        item (Object): Item to be added.
     &#34;&#34;&#34;
     item_wrapper = _HoldoutQueueItemWrapper(
         item,
@@ -406,8 +386,11 @@ item (Object): Item to be added</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for the holdout queue's primary queue.</p>
-<p>Returns:
-Queue: Primary queue</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Queue</code></dt>
+<dd>Primary queue.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -417,7 +400,7 @@ Queue: Primary queue</p></div>
     Getter method for the holdout queue&#39;s primary queue.
 
     Returns:
-    Queue: Primary queue
+        Queue: Primary queue.
     &#34;&#34;&#34;
     return self.__primary_queue</code></pre>
 </details>

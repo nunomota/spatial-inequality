@@ -12,6 +12,7 @@
 <style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
 <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
 <script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
@@ -32,18 +33,10 @@
     necessary properties.
 
     Attributes:
-    __nces_id (str): Standardized NCES ID
-    __total_students (int): Total number of students
-    __total_funding (float): Total funding available
-    __neighbors (set): Set of all neighboring Schools
-
-    Methods:
-    get_id(): Getter method for school&#39;s NCES ID.
-    get_total_students(): Getter method for school&#39;s total number of students.
-    get_total_funding(): Getter method for school&#39;s total funding.
-    get_neighbors(): Getter method for school&#39;s neighbors.
-    add_neighbor(): Adds new neighboring school to currently registered
-        neighbors.
+        __nces_id (str): Standardized NCES ID.
+        __total_students (int): Total number of students.
+        __total_funding (float): Total funding available.
+        __neighbors (set): Set of all neighboring Schools.
     &#34;&#34;&#34;
     __nces_id = None
     __total_sudents = None
@@ -61,7 +54,7 @@
         Getter method for school&#39;s NCES ID.
 
         Returns:
-        str: Standardized NCES ID (should never be nullable)
+            str: Standardized NCES ID (should never be nullable).
         &#34;&#34;&#34;
         return self.__nces_id
     
@@ -70,7 +63,7 @@
         Getter method for school&#39;s total number of students.
 
         Returns:
-        int: Total number of students (should never be nullable)
+            int: Total number of students (should never be nullable).
         &#34;&#34;&#34;
         return self.__total_students
     
@@ -79,7 +72,7 @@
         Getter method for school&#39;s total funding.
 
         Returns:
-        float: Total funding available (should never be nullable)
+            float: Total funding available (should never be nullable).
         &#34;&#34;&#34;
         return self.__total_funding
     
@@ -88,8 +81,8 @@
         Getter method for school&#39;s neighbors.
 
         Returns:
-        set: All NCES IDs for neighboring schools (returns an empty set in case
-            there are none)
+            set: All NCES IDs for neighboring schools (returns an empty set in
+                case there are none).
         &#34;&#34;&#34;
         return self.__neighbors
         
@@ -97,8 +90,8 @@
         &#34;&#34;&#34;
         Adds new neighboring school to currently registered neighbors.
 
-        Parameters:
-        school(School): New neighboring school
+        Args:
+            school(School): New neighboring school.
         &#34;&#34;&#34;
         self.__neighbors.add(school)
         
@@ -119,7 +112,7 @@
         neighboring schools are kept).
 
         Returns:
-        School: Shallow copy of School object
+            School: Shallow copy of School object.
         &#34;&#34;&#34;
         copy = School(self._nces__id, self.__total_sudents, self.__total_funding)
         for neighbor in self.__neighbors:
@@ -133,7 +126,7 @@
         neighborhood instead).
 
         Returns:
-        School: Deep copy of School object
+            School: Deep copy of School object.
         &#34;&#34;&#34;
         copy = School(self._nces__id, self.__total_sudents, self.__total_funding)
         for neighbor in self.__neighbors:
@@ -146,20 +139,10 @@ class District:
     necessary properties.
 
     Attributes:
-    __nces_id (str): Standardized NCES ID
-    __total_students (int): Total number of students
-    __total_funding (float): Total funding available
-    __schools (set): Set of all assigned Schools
-
-    Methods:
-    get_id(): Getter method for district&#39;s NCES ID.
-    get_total_students(): Getter method for district&#39;s total number of students.
-    get_total_funding(): Getter method for district&#39;s total funding.
-    get_schools(): Getter method for district&#39;s assigned schools.
-    add_school(): Adds a new School to the district and updates district&#39;s total
-        students and funding.
-    remove_school(): Removes a School assigned to the district and updates
-        district&#39;s total students and funding.
+        __nces_id (str): Standardized NCES ID.
+        __total_students (int): Total number of students.
+        __total_funding (float): Total funding available.
+        __schools (set): Set of all assigned Schools.
     &#34;&#34;&#34;
     __nces_id = None
     __total_students = None
@@ -177,7 +160,7 @@ class District:
         Getter method for district&#39;s NCES ID.
 
         Returns:
-        str: Standardized NCES ID (should never be nullable)
+            str: Standardized NCES ID (should never be nullable).
         &#34;&#34;&#34;
         return self.__nces_id
     
@@ -186,7 +169,7 @@ class District:
         Getter method for district&#39;s total number of students.
 
         Returns:
-        int: Total number of students (should never be nullable)
+            int: Total number of students (should never be nullable).
         &#34;&#34;&#34;
         return self.__total_students
     
@@ -195,7 +178,7 @@ class District:
         Getter method for district&#39;s total funding.
 
         Returns:
-        float: Total funding available (should never be nullable)
+            float: Total funding available (should never be nullable).
         &#34;&#34;&#34;
         return self.__total_funding
     
@@ -204,7 +187,7 @@ class District:
         Getter method for all Schools in the district.
 
         Returns:
-        set: Set of unique School objects assigned to the district
+            set: Set of unique School objects assigned to the district.
         &#34;&#34;&#34;
         return self.__schools
     
@@ -213,8 +196,8 @@ class District:
         Adds a new School to the district and updates district&#39;s total students
         and funding.
 
-        Parameters:
-        school (School): New school to add
+        Args:
+            school (School): New school to add.
         &#34;&#34;&#34;
         # TODO avoid error propagation
         self.__total_students += school.get_total_students()
@@ -226,8 +209,8 @@ class District:
         Removes a School assigned to the district and updates district&#39;s total
         students and funding.
 
-        Parameters:
-        school (School): Old school to remove
+        Args:
+            school (School): Old school to remove.
         &#34;&#34;&#34;
         # TODO avoid error propagation
         self.__total_students -= school.get_total_students()
@@ -251,7 +234,7 @@ class District:
         assigned schools are kept).
 
         Returns:
-        District: Shallow copy of District object
+            District: Shallow copy of District object.
         &#34;&#34;&#34;
         copy = District(self.__nces_id)
         for school in self.__schools:
@@ -265,7 +248,7 @@ class District:
         district instead).
 
         Returns:
-        District: Deep copy of District object
+            District: Deep copy of District object.
         &#34;&#34;&#34;
         copy = District(self.__nces_id)
         for school in self.__schools:
@@ -289,20 +272,17 @@ class District:
 <dd>
 <div class="desc"><p>Class to represent and single public school in the US and all of its
 necessary properties.</p>
-<p>Attributes:
-__nces_id (str): Standardized NCES ID
-__total_students (int): Total number of students
-__total_funding (float): Total funding available
-__schools (set): Set of all assigned Schools</p>
-<p>Methods:
-get_id(): Getter method for district's NCES ID.
-get_total_students(): Getter method for district's total number of students.
-get_total_funding(): Getter method for district's total funding.
-get_schools(): Getter method for district's assigned schools.
-add_school(): Adds a new School to the district and updates district's total
-students and funding.
-remove_school(): Removes a School assigned to the district and updates
-district's total students and funding.</p></div>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>__nces_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized NCES ID.</dd>
+<dt><strong><code>__total_students</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of students.</dd>
+<dt><strong><code>__total_funding</code></strong> :&ensp;<code>float</code></dt>
+<dd>Total funding available.</dd>
+<dt><strong><code>__schools</code></strong> :&ensp;<code>set</code></dt>
+<dd>Set of all assigned Schools.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -313,20 +293,10 @@ district's total students and funding.</p></div>
     necessary properties.
 
     Attributes:
-    __nces_id (str): Standardized NCES ID
-    __total_students (int): Total number of students
-    __total_funding (float): Total funding available
-    __schools (set): Set of all assigned Schools
-
-    Methods:
-    get_id(): Getter method for district&#39;s NCES ID.
-    get_total_students(): Getter method for district&#39;s total number of students.
-    get_total_funding(): Getter method for district&#39;s total funding.
-    get_schools(): Getter method for district&#39;s assigned schools.
-    add_school(): Adds a new School to the district and updates district&#39;s total
-        students and funding.
-    remove_school(): Removes a School assigned to the district and updates
-        district&#39;s total students and funding.
+        __nces_id (str): Standardized NCES ID.
+        __total_students (int): Total number of students.
+        __total_funding (float): Total funding available.
+        __schools (set): Set of all assigned Schools.
     &#34;&#34;&#34;
     __nces_id = None
     __total_students = None
@@ -344,7 +314,7 @@ district's total students and funding.</p></div>
         Getter method for district&#39;s NCES ID.
 
         Returns:
-        str: Standardized NCES ID (should never be nullable)
+            str: Standardized NCES ID (should never be nullable).
         &#34;&#34;&#34;
         return self.__nces_id
     
@@ -353,7 +323,7 @@ district's total students and funding.</p></div>
         Getter method for district&#39;s total number of students.
 
         Returns:
-        int: Total number of students (should never be nullable)
+            int: Total number of students (should never be nullable).
         &#34;&#34;&#34;
         return self.__total_students
     
@@ -362,7 +332,7 @@ district's total students and funding.</p></div>
         Getter method for district&#39;s total funding.
 
         Returns:
-        float: Total funding available (should never be nullable)
+            float: Total funding available (should never be nullable).
         &#34;&#34;&#34;
         return self.__total_funding
     
@@ -371,7 +341,7 @@ district's total students and funding.</p></div>
         Getter method for all Schools in the district.
 
         Returns:
-        set: Set of unique School objects assigned to the district
+            set: Set of unique School objects assigned to the district.
         &#34;&#34;&#34;
         return self.__schools
     
@@ -380,8 +350,8 @@ district's total students and funding.</p></div>
         Adds a new School to the district and updates district&#39;s total students
         and funding.
 
-        Parameters:
-        school (School): New school to add
+        Args:
+            school (School): New school to add.
         &#34;&#34;&#34;
         # TODO avoid error propagation
         self.__total_students += school.get_total_students()
@@ -393,8 +363,8 @@ district's total students and funding.</p></div>
         Removes a School assigned to the district and updates district&#39;s total
         students and funding.
 
-        Parameters:
-        school (School): Old school to remove
+        Args:
+            school (School): Old school to remove.
         &#34;&#34;&#34;
         # TODO avoid error propagation
         self.__total_students -= school.get_total_students()
@@ -418,7 +388,7 @@ district's total students and funding.</p></div>
         assigned schools are kept).
 
         Returns:
-        District: Shallow copy of District object
+            District: Shallow copy of District object.
         &#34;&#34;&#34;
         copy = District(self.__nces_id)
         for school in self.__schools:
@@ -432,7 +402,7 @@ district's total students and funding.</p></div>
         district instead).
 
         Returns:
-        District: Deep copy of District object
+            District: Deep copy of District object.
         &#34;&#34;&#34;
         copy = District(self.__nces_id)
         for school in self.__schools:
@@ -447,8 +417,11 @@ district's total students and funding.</p></div>
 <dd>
 <div class="desc"><p>Adds a new School to the district and updates district's total students
 and funding.</p>
-<p>Parameters:
-school (School): New school to add</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>school</code></strong> :&ensp;<code><a title="src.optimization.entity_nodes.School" href="#src.optimization.entity_nodes.School">School</a></code></dt>
+<dd>New school to add.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -458,8 +431,8 @@ school (School): New school to add</p></div>
     Adds a new School to the district and updates district&#39;s total students
     and funding.
 
-    Parameters:
-    school (School): New school to add
+    Args:
+        school (School): New school to add.
     &#34;&#34;&#34;
     # TODO avoid error propagation
     self.__total_students += school.get_total_students()
@@ -472,8 +445,11 @@ school (School): New school to add</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for district's NCES ID.</p>
-<p>Returns:
-str: Standardized NCES ID (should never be nullable)</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>Standardized NCES ID (should never be nullable).</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -483,7 +459,7 @@ str: Standardized NCES ID (should never be nullable)</p></div>
     Getter method for district&#39;s NCES ID.
 
     Returns:
-    str: Standardized NCES ID (should never be nullable)
+        str: Standardized NCES ID (should never be nullable).
     &#34;&#34;&#34;
     return self.__nces_id</code></pre>
 </details>
@@ -493,8 +469,11 @@ str: Standardized NCES ID (should never be nullable)</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for all Schools in the district.</p>
-<p>Returns:
-set: Set of unique School objects assigned to the district</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>set</code></dt>
+<dd>Set of unique School objects assigned to the district.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -504,7 +483,7 @@ set: Set of unique School objects assigned to the district</p></div>
     Getter method for all Schools in the district.
 
     Returns:
-    set: Set of unique School objects assigned to the district
+        set: Set of unique School objects assigned to the district.
     &#34;&#34;&#34;
     return self.__schools</code></pre>
 </details>
@@ -514,8 +493,11 @@ set: Set of unique School objects assigned to the district</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for district's total funding.</p>
-<p>Returns:
-float: Total funding available (should never be nullable)</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Total funding available (should never be nullable).</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -525,7 +507,7 @@ float: Total funding available (should never be nullable)</p></div>
     Getter method for district&#39;s total funding.
 
     Returns:
-    float: Total funding available (should never be nullable)
+        float: Total funding available (should never be nullable).
     &#34;&#34;&#34;
     return self.__total_funding</code></pre>
 </details>
@@ -535,8 +517,11 @@ float: Total funding available (should never be nullable)</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for district's total number of students.</p>
-<p>Returns:
-int: Total number of students (should never be nullable)</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>Total number of students (should never be nullable).</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -546,7 +531,7 @@ int: Total number of students (should never be nullable)</p></div>
     Getter method for district&#39;s total number of students.
 
     Returns:
-    int: Total number of students (should never be nullable)
+        int: Total number of students (should never be nullable).
     &#34;&#34;&#34;
     return self.__total_students</code></pre>
 </details>
@@ -557,8 +542,11 @@ int: Total number of students (should never be nullable)</p></div>
 <dd>
 <div class="desc"><p>Removes a School assigned to the district and updates district's total
 students and funding.</p>
-<p>Parameters:
-school (School): Old school to remove</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>school</code></strong> :&ensp;<code><a title="src.optimization.entity_nodes.School" href="#src.optimization.entity_nodes.School">School</a></code></dt>
+<dd>Old school to remove.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -568,8 +556,8 @@ school (School): Old school to remove</p></div>
     Removes a School assigned to the district and updates district&#39;s total
     students and funding.
 
-    Parameters:
-    school (School): Old school to remove
+    Args:
+        school (School): Old school to remove.
     &#34;&#34;&#34;
     # TODO avoid error propagation
     self.__total_students -= school.get_total_students()
@@ -586,18 +574,17 @@ school (School): Old school to remove</p></div>
 <dd>
 <div class="desc"><p>Class to represent and single public school in the US and all of its
 necessary properties.</p>
-<p>Attributes:
-__nces_id (str): Standardized NCES ID
-__total_students (int): Total number of students
-__total_funding (float): Total funding available
-__neighbors (set): Set of all neighboring Schools</p>
-<p>Methods:
-get_id(): Getter method for school's NCES ID.
-get_total_students(): Getter method for school's total number of students.
-get_total_funding(): Getter method for school's total funding.
-get_neighbors(): Getter method for school's neighbors.
-add_neighbor(): Adds new neighboring school to currently registered
-neighbors.</p></div>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>__nces_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized NCES ID.</dd>
+<dt><strong><code>__total_students</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of students.</dd>
+<dt><strong><code>__total_funding</code></strong> :&ensp;<code>float</code></dt>
+<dd>Total funding available.</dd>
+<dt><strong><code>__neighbors</code></strong> :&ensp;<code>set</code></dt>
+<dd>Set of all neighboring Schools.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -608,18 +595,10 @@ neighbors.</p></div>
     necessary properties.
 
     Attributes:
-    __nces_id (str): Standardized NCES ID
-    __total_students (int): Total number of students
-    __total_funding (float): Total funding available
-    __neighbors (set): Set of all neighboring Schools
-
-    Methods:
-    get_id(): Getter method for school&#39;s NCES ID.
-    get_total_students(): Getter method for school&#39;s total number of students.
-    get_total_funding(): Getter method for school&#39;s total funding.
-    get_neighbors(): Getter method for school&#39;s neighbors.
-    add_neighbor(): Adds new neighboring school to currently registered
-        neighbors.
+        __nces_id (str): Standardized NCES ID.
+        __total_students (int): Total number of students.
+        __total_funding (float): Total funding available.
+        __neighbors (set): Set of all neighboring Schools.
     &#34;&#34;&#34;
     __nces_id = None
     __total_sudents = None
@@ -637,7 +616,7 @@ neighbors.</p></div>
         Getter method for school&#39;s NCES ID.
 
         Returns:
-        str: Standardized NCES ID (should never be nullable)
+            str: Standardized NCES ID (should never be nullable).
         &#34;&#34;&#34;
         return self.__nces_id
     
@@ -646,7 +625,7 @@ neighbors.</p></div>
         Getter method for school&#39;s total number of students.
 
         Returns:
-        int: Total number of students (should never be nullable)
+            int: Total number of students (should never be nullable).
         &#34;&#34;&#34;
         return self.__total_students
     
@@ -655,7 +634,7 @@ neighbors.</p></div>
         Getter method for school&#39;s total funding.
 
         Returns:
-        float: Total funding available (should never be nullable)
+            float: Total funding available (should never be nullable).
         &#34;&#34;&#34;
         return self.__total_funding
     
@@ -664,8 +643,8 @@ neighbors.</p></div>
         Getter method for school&#39;s neighbors.
 
         Returns:
-        set: All NCES IDs for neighboring schools (returns an empty set in case
-            there are none)
+            set: All NCES IDs for neighboring schools (returns an empty set in
+                case there are none).
         &#34;&#34;&#34;
         return self.__neighbors
         
@@ -673,8 +652,8 @@ neighbors.</p></div>
         &#34;&#34;&#34;
         Adds new neighboring school to currently registered neighbors.
 
-        Parameters:
-        school(School): New neighboring school
+        Args:
+            school(School): New neighboring school.
         &#34;&#34;&#34;
         self.__neighbors.add(school)
         
@@ -695,7 +674,7 @@ neighbors.</p></div>
         neighboring schools are kept).
 
         Returns:
-        School: Shallow copy of School object
+            School: Shallow copy of School object.
         &#34;&#34;&#34;
         copy = School(self._nces__id, self.__total_sudents, self.__total_funding)
         for neighbor in self.__neighbors:
@@ -709,7 +688,7 @@ neighbors.</p></div>
         neighborhood instead).
 
         Returns:
-        School: Deep copy of School object
+            School: Deep copy of School object.
         &#34;&#34;&#34;
         copy = School(self._nces__id, self.__total_sudents, self.__total_funding)
         for neighbor in self.__neighbors:
@@ -723,8 +702,8 @@ neighbors.</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Adds new neighboring school to currently registered neighbors.</p>
-<p>Parameters:
-school(School): New neighboring school</p></div>
+<h2 id="args">Args</h2>
+<p>school(School): New neighboring school.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -733,8 +712,8 @@ school(School): New neighboring school</p></div>
     &#34;&#34;&#34;
     Adds new neighboring school to currently registered neighbors.
 
-    Parameters:
-    school(School): New neighboring school
+    Args:
+        school(School): New neighboring school.
     &#34;&#34;&#34;
     self.__neighbors.add(school)</code></pre>
 </details>
@@ -744,8 +723,11 @@ school(School): New neighboring school</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for school's NCES ID.</p>
-<p>Returns:
-str: Standardized NCES ID (should never be nullable)</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>Standardized NCES ID (should never be nullable).</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -755,7 +737,7 @@ str: Standardized NCES ID (should never be nullable)</p></div>
     Getter method for school&#39;s NCES ID.
 
     Returns:
-    str: Standardized NCES ID (should never be nullable)
+        str: Standardized NCES ID (should never be nullable).
     &#34;&#34;&#34;
     return self.__nces_id</code></pre>
 </details>
@@ -765,9 +747,12 @@ str: Standardized NCES ID (should never be nullable)</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for school's neighbors.</p>
-<p>Returns:
-set: All NCES IDs for neighboring schools (returns an empty set in case
-there are none)</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>set</code></dt>
+<dd>All NCES IDs for neighboring schools (returns an empty set in
+case there are none).</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -777,8 +762,8 @@ there are none)</p></div>
     Getter method for school&#39;s neighbors.
 
     Returns:
-    set: All NCES IDs for neighboring schools (returns an empty set in case
-        there are none)
+        set: All NCES IDs for neighboring schools (returns an empty set in
+            case there are none).
     &#34;&#34;&#34;
     return self.__neighbors</code></pre>
 </details>
@@ -788,8 +773,11 @@ there are none)</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for school's total funding.</p>
-<p>Returns:
-float: Total funding available (should never be nullable)</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Total funding available (should never be nullable).</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -799,7 +787,7 @@ float: Total funding available (should never be nullable)</p></div>
     Getter method for school&#39;s total funding.
 
     Returns:
-    float: Total funding available (should never be nullable)
+        float: Total funding available (should never be nullable).
     &#34;&#34;&#34;
     return self.__total_funding</code></pre>
 </details>
@@ -809,8 +797,11 @@ float: Total funding available (should never be nullable)</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Getter method for school's total number of students.</p>
-<p>Returns:
-int: Total number of students (should never be nullable)</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>Total number of students (should never be nullable).</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -820,7 +811,7 @@ int: Total number of students (should never be nullable)</p></div>
     Getter method for school&#39;s total number of students.
 
     Returns:
-    int: Total number of students (should never be nullable)
+        int: Total number of students (should never be nullable).
     &#34;&#34;&#34;
     return self.__total_students</code></pre>
 </details>

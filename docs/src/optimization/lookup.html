@@ -12,6 +12,7 @@
 <style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
 <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
 <script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
@@ -33,85 +34,35 @@ from collections import Counter
 class Lookup:
     &#34;&#34;&#34;
     This class provides several fast lookup methods for both
-    optimization.entity_nodes.District and optimization.entity_nodes.School
+    `optimization.entity_nodes.District` and `optimization.entity_nodes.School`
     instances. The underlying data structures are also updated dynamically to
     minimize computational complexity of certain operations (e.g., extracting
     districts&#39; neighborhoods from schools&#39; neighborhoods).
 
     Attributes:
-    __school_dict (dict of str: optimization.entity_nodes.School): Mapping
-        between standardized school NCES IDs and their respective School
-        instances
-    __district_dict (dict of str: optimization.entity_nodes.District): Mapping
-        between standardized district NCES IDs and their respective District
-        instances
-    __assignment_dict (dict of str: optimization.entity_nodes.District): Mapping
-        between standardized school NCES IDs and the District instance they are
-        assigned to
-    __bordering_dict (dict of str: optimization.entity_nodes.School): Mapping
-        between standardized district NCES IDs and School instances at their
-        border (i.e., schools that neighbor other districts)
-    __edge_tracker_matrix (numpy.ndarray): Square matrix (2-dimensional array),
-        of &#39;districts x districts&#39; dimensions, that contains the amount of
-        existing edges between any pair of districts
-    __district_id_to_edge_tracker_idx_dict (dict of str: int): Mapping between
-        standardized district NCES IDs and their corresponding index in the
-        __edge_tracker_matrix
-    __edge_tracker_idx_to_district_id_dict (dict of int: str): Mapping between
-        a district&#39;s index in the __edge_tracker_matrix and their respective
-        standardized NCES ID
-    __neighborhood_change_counter_dict (dict of str: int): Mapping between
-        standardized district NCES IDs and the number of cumulative changes made
-        in their neihborhood (i.e., number of schools redistricted)
-    __all_schools_assigned (bool): Initialization flag to signal whether all
-        schools have an assigned district
-
-    Methods:
-    get_school_by_id(school_id): Gets a optimization.entity_nodes.School
-        instance through its standardized NCES ID.
-    get_district_by_id(district_id): Gets a optimization.entity_nodes.District
-        instance through its standardized NCES ID.
-    get_district_by_school_id(school_id): Gets a
-        optimization.entity_nodes.District instance to which a given school&#39;s
-        standardized NCES ID is assigned to.
-    get_bordering_schools_by_district_id(district_id): Gets the set of
-        optimization.entity_nodes.School instances that belong to a district&#39;s
-        border (i.e., that neighbor other districts) through its standardized
-        NCES ID.
-    get_neighboor_districts_by_district_id(district_id): Gets the set of
-        optimization.entity_nodes.District instances that neighbor a specified
-        district, through its standardized NCES ID.
-    get_neighboorhood_changes_by_district_id(district_id): Gets the number of
-        cumulative changes made to a district&#39;s neighborhood (i.e., number of
-        schools redistricted) through its standardized NCES ID.
-    assign_school_to_district_by_id(school_id, new_district_id): Assigns a
-        school to a district, through their respective standardized NCES IDs. If
-        there exists a previous district assignment, the school is reassigned to
-        the new district.
-    __handle_incomplete_district_assignment(): Checks whether all schools are
-        assigned to a district and updates __all_schools_assigned accordingly.
-        The first time this flag is set to &#39;true&#39;, this method iterates over all
-        schools and districts to initialize all necessary attributes for lookup
-        speedup (i.e., __edge_tracker_matrix,
-        __district_id_to_edge_tracker_idx_dict,
-        __edge_tracker_idx_to_district_id_dict, and
-        __neighborhood_change_counter_dict).
-    __is_school_in_district_border(school_id, with_district_id=None): Checks
-        whether a school is at its assigned district&#39;s border. Beyond this first
-        condition, this method can also check if a school is bordering a
-        specific (neighboring) district.
-    __update_bordering_schools_by_district_id(moved_school_id, from_district_id,
-        to_district_id): Updates the set of bordering schools for two districts
-        involved in a school&#39;s district reassignment.
-    __update_district_neighborhoods_by_district_id(moved_school_id,
-        from_district_id, to_district_id): Updates the set of neighboring
-        districts for two districts involved in a school&#39;s district
-        reassignment. It also updates the number of existing edges between
-        involved pairs of neighbors.
-    __update_neighboorhood_change_counter(from_district_id, to_district_id):
-        Updates the number of cumulative changes (i.e., schools redistricted)
-        for two districts involved in a school&#39;s district reassignment and their
-        respective neighborhoods.
+        __school_dict (dict): Mapping between standardized school NCES IDs and
+            their respective School instances.
+        __district_dict (dict): Mapping between standardized district NCES IDs
+            and their respective District instances.
+        __assignment_dict (dict): Mapping between standardized school NCES IDs
+            and the District instance they are assigned to.
+        __bordering_dict (dict): Mapping between standardized district NCES IDs
+            and School instances at their border (i.e., schools that neighbor
+            other districts).
+        __edge_tracker_matrix (numpy.ndarray): Square matrix (2-dimensional
+            array), of &#39;districts x districts&#39; dimensions, that contains the
+            amount of existing edges between any pair of districts.
+        __district_id_to_edge_tracker_idx_dict (dict): Mapping between
+            standardized district NCES IDs and their corresponding index in the
+            __edge_tracker_matrix.
+        __edge_tracker_idx_to_district_id_dict (dict): Mapping between a
+            district&#39;s index in the __edge_tracker_matrix and their respective
+            standardized NCES ID.
+        __neighborhood_change_counter_dict (dict): Mapping between standardized
+            district NCES IDs and the number of cumulative changes made in their
+            neihborhood (i.e., number of schools redistricted).
+        __all_schools_assigned (bool): Initialization flag to signal whether all
+            schools have an assigned district
     &#34;&#34;&#34;
     __school_dict = None
     __district_dict = None
@@ -148,11 +99,11 @@ class Lookup:
         Gets a optimization.entity_nodes.School instance through its
         standardized NCES ID.
 
-        Parameters:
-        school_id (str): Standardized school NCES ID
+        Args:
+            school_id (str): Standardized school NCES ID.
 
         Returns:
-        optimization.entity_nodes.School: School object instance
+            optimization.entity_nodes.School: School object instance.
         &#34;&#34;&#34;
         return self.__school_dict.get(school_id, None)
     
@@ -161,11 +112,11 @@ class Lookup:
         Gets a optimization.entity_nodes.District instance through its
         standardized NCES ID.
 
-        Parameters:
-        district_id (str): Standardized district NCES ID
+        Args:
+            district_id (str): Standardized district NCES ID.
 
         Returns:
-        optimization.entity_nodes.District: District object instance
+            optimization.entity_nodes.District: District object instance.
         &#34;&#34;&#34;
         return self.__district_dict.get(district_id, None)
     
@@ -174,11 +125,11 @@ class Lookup:
         Gets a optimization.entity_nodes.District instance to which a given
         school&#39;s standardized NCES ID is assigned to.
 
-        Parameters:
-        school_id (str): Standardized school NCES ID
+        Args:
+            school_id (str): Standardized school NCES ID.
 
         Returns:
-        optimization.entity_nodes.District: District object instance
+            optimization.entity_nodes.District: District object instance.
         &#34;&#34;&#34;
         return self.__assignment_dict.get(school_id, None)
     
@@ -188,16 +139,16 @@ class Lookup:
         to a district&#39;s border (i.e., that neighbor other districts) through its
         standardized NCES ID.
 
-        Parameters:
-        district_id (str): Standardized district NCES ID
+        Args:
+            district_id (str): Standardized district NCES ID.
 
         Returns:
-        set of optimization.entity_nodes.School: Set of School instances at the
-            district&#39;s border
+            set of optimization.entity_nodes.School: Set of School instances at
+                the district&#39;s border.
 
         Raises:
-        ValueError: Whenever this method is called prior to finalizing school to
-            district assignment
+            ValueError: Whenever this method is called prior to finalizing
+                school to district assignment.
         &#34;&#34;&#34;
         if not self.__all_schools_assigned:
             raise ValueError(&#34;Attempting to retrieve bordering schools wo/ complete district assignment...&#34;)
@@ -208,16 +159,16 @@ class Lookup:
         Gets the set of optimization.entity_nodes.District instances that
         neighbor a specified district, through its standardized NCES ID.
 
-        Parameters:
-        district_id (str): Standardized district NCES ID
+        Args:
+            district_id (str): Standardized district NCES ID.
 
         Returns:
-        set of optimization.entity_nodes.District: Set of neighboring District
-            instances
+            set of optimization.entity_nodes.District: Set of neighboring
+                District instances.
 
         Raises:
-        ValueError: Whenever this method is called prior to finalizing school to
-            district assignment
+            ValueError: Whenever this method is called prior to finalizing
+                school to district assignment.
         &#34;&#34;&#34;
         if not self.__all_schools_assigned:
             raise ValueError(&#34;Attempting to retrieve neighbor districts wo/ complete district assignment...&#34;)
@@ -231,15 +182,15 @@ class Lookup:
         Gets the number of cumulative changes made to a district&#39;s neighborhood
         (i.e., number of schools redistricted) through its standardized NCES ID.
 
-        Parameters:
-        district_id (str): Standardized district NCES ID
+        Args:
+            district_id (str): Standardized district NCES ID.
 
         Returns:
-        int: Number of schools redistricted in District&#39;s neighborhood
+            int: Number of schools redistricted in District&#39;s neighborhood.
 
         Raises:
-        ValueError: Whenever this method is called prior to finalizing school to
-            district assignment
+            ValueError: Whenever this method is called prior to finalizing
+                school to district assignment.
         &#34;&#34;&#34;
         if not self.__all_schools_assigned:
             raise ValueError(&#34;Attempting to retrieve neighborhood changes wo/ complete district assignment...&#34;)
@@ -259,13 +210,13 @@ class Lookup:
         operations and ammortizes computational complexity of the overall
         algorithm.
 
-        Parameters:
-        school_id (str): Standardized target school NCES ID
-        new_district_id (str): Standardized assignment district NCES ID
+        Args:
+            school_id (str): Standardized target school NCES ID.
+            new_district_id (str): Standardized assignment district NCES ID.
 
         Raises:
-        AssertionError: Whenever a school is reassigned to a different district,
-            but isn&#39;t at its current district&#39;s border
+            AssertionError: Whenever a school is reassigned to a different
+                district, but isn&#39;t at its current district&#39;s border.
         &#34;&#34;&#34;
         old_district = self.get_district_by_school_id(school_id)
         new_district = self.get_district_by_id(new_district_id)
@@ -352,14 +303,15 @@ class Lookup:
         this first condition, this method can also check if a school is
         bordering a specific (neighboring) district.
 
-        Parameters:
-        school_id (str): Standardized target school NCES ID
-        with_district_id (str): Standardized neighboring district NCES ID, or
-            None
+        Args:
+            school_id (str): Standardized target school NCES ID.
+            with_district_id (str): Standardized neighboring district NCES ID,
+                or None.
 
         Returns:
-        bool: &#39;true&#39; if the school is at its assigned district&#39;s border (and,
-        optionally, if it neighbors a specific district), &#39;false&#39; otherwise
+            bool: &#39;true&#39; if the school is at its assigned district&#39;s border
+                (and, optionally, if it neighbors a specific district), &#39;false&#39;
+                otherwise.
         &#34;&#34;&#34;
         school = self.get_school_by_id(school_id)
         district = self.get_district_by_school_id(school_id)
@@ -379,10 +331,10 @@ class Lookup:
         Updates the set of bordering schools for two districts involved in a
         school&#39;s district reassignment.
 
-        Parameters:
-        moved_school_id (str): Standardized target school NCES ID
-        from_district_id (str): Standardized source district NCES ID
-        to_district_id (str): Standardized destination district NCES ID
+        Args:
+            moved_school_id (str): Standardized target school NCES ID.
+            from_district_id (str): Standardized source district NCES ID.
+            to_district_id (str): Standardized destination district NCES ID.
         &#34;&#34;&#34;
         moved_school = self.get_school_by_id(moved_school_id)
         from_district = self.get_district_by_id(from_district_id)
@@ -413,10 +365,10 @@ class Lookup:
         school&#39;s district reassignment. It also updates the number of existing
         edges between involved pairs of neighbors.
 
-        Parameters:
-        moved_school_id (str): Standardized target school NCES ID
-        from_district_id (str): Standardized source district NCES ID
-        to_district_id (str): Standardized destination district NCES ID
+        Args:
+            moved_school_id (str): Standardized target school NCES ID.
+            from_district_id (str): Standardized source district NCES ID.
+            to_district_id (str): Standardized destination district NCES ID.
         &#34;&#34;&#34;
         # Get number of edges between moved school and its neighbors&#39; districts
         moved_school = self.get_school_by_id(moved_school_id)
@@ -452,9 +404,9 @@ class Lookup:
         for two districts involved in a school&#39;s district reassignment and their
         respective neighborhoods.
 
-        Parameters:
-        from_district_id (str): Standardized source district NCES ID
-        to_district_id (str): Standardized destination district NCES ID
+        Args:
+            from_district_id (str): Standardized source district NCES ID.
+            to_district_id (str): Standardized destination district NCES ID.
         &#34;&#34;&#34;
         # Auxiliary method for single counter increments
         def inc_counter(district_id):
@@ -487,83 +439,45 @@ class Lookup:
 </code></dt>
 <dd>
 <div class="desc"><p>This class provides several fast lookup methods for both
-optimization.entity_nodes.District and optimization.entity_nodes.School
+<code>optimization.entity_nodes.District</code> and <code>optimization.entity_nodes.School</code>
 instances. The underlying data structures are also updated dynamically to
 minimize computational complexity of certain operations (e.g., extracting
 districts' neighborhoods from schools' neighborhoods).</p>
-<p>Attributes:
-__school_dict (dict of str: optimization.entity_nodes.School): Mapping
-between standardized school NCES IDs and their respective School
-instances
-__district_dict (dict of str: optimization.entity_nodes.District): Mapping
-between standardized district NCES IDs and their respective District
-instances
-__assignment_dict (dict of str: optimization.entity_nodes.District): Mapping
-between standardized school NCES IDs and the District instance they are
-assigned to
-__bordering_dict (dict of str: optimization.entity_nodes.School): Mapping
-between standardized district NCES IDs and School instances at their
-border (i.e., schools that neighbor other districts)
-__edge_tracker_matrix (numpy.ndarray): Square matrix (2-dimensional array),
-of 'districts x districts' dimensions, that contains the amount of
-existing edges between any pair of districts
-__district_id_to_edge_tracker_idx_dict (dict of str: int): Mapping between
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>__school_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Mapping between standardized school NCES IDs and
+their respective School instances.</dd>
+<dt><strong><code>__district_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Mapping between standardized district NCES IDs
+and their respective District instances.</dd>
+<dt><strong><code>__assignment_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Mapping between standardized school NCES IDs
+and the District instance they are assigned to.</dd>
+<dt><strong><code>__bordering_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Mapping between standardized district NCES IDs
+and School instances at their border (i.e., schools that neighbor
+other districts).</dd>
+<dt><strong><code>__edge_tracker_matrix</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>Square matrix (2-dimensional
+array), of 'districts x districts' dimensions, that contains the
+amount of existing edges between any pair of districts.</dd>
+<dt><strong><code>__district_id_to_edge_tracker_idx_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Mapping between
 standardized district NCES IDs and their corresponding index in the
-__edge_tracker_matrix
-__edge_tracker_idx_to_district_id_dict (dict of int: str): Mapping between
-a district's index in the __edge_tracker_matrix and their respective
-standardized NCES ID
-__neighborhood_change_counter_dict (dict of str: int): Mapping between
-standardized district NCES IDs and the number of cumulative changes made
-in their neihborhood (i.e., number of schools redistricted)
-__all_schools_assigned (bool): Initialization flag to signal whether all
-schools have an assigned district</p>
-<p>Methods:
-get_school_by_id(school_id): Gets a optimization.entity_nodes.School
-instance through its standardized NCES ID.
-get_district_by_id(district_id): Gets a optimization.entity_nodes.District
-instance through its standardized NCES ID.
-get_district_by_school_id(school_id): Gets a
-optimization.entity_nodes.District instance to which a given school's
-standardized NCES ID is assigned to.
-get_bordering_schools_by_district_id(district_id): Gets the set of
-optimization.entity_nodes.School instances that belong to a district's
-border (i.e., that neighbor other districts) through its standardized
-NCES ID.
-get_neighboor_districts_by_district_id(district_id): Gets the set of
-optimization.entity_nodes.District instances that neighbor a specified
-district, through its standardized NCES ID.
-get_neighboorhood_changes_by_district_id(district_id): Gets the number of
-cumulative changes made to a district's neighborhood (i.e., number of
-schools redistricted) through its standardized NCES ID.
-assign_school_to_district_by_id(school_id, new_district_id): Assigns a
-school to a district, through their respective standardized NCES IDs. If
-there exists a previous district assignment, the school is reassigned to
-the new district.
-__handle_incomplete_district_assignment(): Checks whether all schools are
-assigned to a district and updates __all_schools_assigned accordingly.
-The first time this flag is set to 'true', this method iterates over all
-schools and districts to initialize all necessary attributes for lookup
-speedup (i.e., __edge_tracker_matrix,
-__district_id_to_edge_tracker_idx_dict,
-__edge_tracker_idx_to_district_id_dict, and
-__neighborhood_change_counter_dict).
-__is_school_in_district_border(school_id, with_district_id=None): Checks
-whether a school is at its assigned district's border. Beyond this first
-condition, this method can also check if a school is bordering a
-specific (neighboring) district.
-__update_bordering_schools_by_district_id(moved_school_id, from_district_id,
-to_district_id): Updates the set of bordering schools for two districts
-involved in a school's district reassignment.
-__update_district_neighborhoods_by_district_id(moved_school_id,
-from_district_id, to_district_id): Updates the set of neighboring
-districts for two districts involved in a school's district
-reassignment. It also updates the number of existing edges between
-involved pairs of neighbors.
-__update_neighboorhood_change_counter(from_district_id, to_district_id):
-Updates the number of cumulative changes (i.e., schools redistricted)
-for two districts involved in a school's district reassignment and their
-respective neighborhoods.</p></div>
+__edge_tracker_matrix.</dd>
+<dt><strong><code>__edge_tracker_idx_to_district_id_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Mapping between a
+district's index in the __edge_tracker_matrix and their respective
+standardized NCES ID.</dd>
+<dt><strong><code>__neighborhood_change_counter_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Mapping between standardized
+district NCES IDs and the number of cumulative changes made in their
+neihborhood (i.e., number of schools redistricted).</dd>
+<dt><strong><code>__all_schools_assigned</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Initialization flag to signal whether all
+schools have an assigned district</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -571,85 +485,35 @@ respective neighborhoods.</p></div>
 <pre><code class="python">class Lookup:
     &#34;&#34;&#34;
     This class provides several fast lookup methods for both
-    optimization.entity_nodes.District and optimization.entity_nodes.School
+    `optimization.entity_nodes.District` and `optimization.entity_nodes.School`
     instances. The underlying data structures are also updated dynamically to
     minimize computational complexity of certain operations (e.g., extracting
     districts&#39; neighborhoods from schools&#39; neighborhoods).
 
     Attributes:
-    __school_dict (dict of str: optimization.entity_nodes.School): Mapping
-        between standardized school NCES IDs and their respective School
-        instances
-    __district_dict (dict of str: optimization.entity_nodes.District): Mapping
-        between standardized district NCES IDs and their respective District
-        instances
-    __assignment_dict (dict of str: optimization.entity_nodes.District): Mapping
-        between standardized school NCES IDs and the District instance they are
-        assigned to
-    __bordering_dict (dict of str: optimization.entity_nodes.School): Mapping
-        between standardized district NCES IDs and School instances at their
-        border (i.e., schools that neighbor other districts)
-    __edge_tracker_matrix (numpy.ndarray): Square matrix (2-dimensional array),
-        of &#39;districts x districts&#39; dimensions, that contains the amount of
-        existing edges between any pair of districts
-    __district_id_to_edge_tracker_idx_dict (dict of str: int): Mapping between
-        standardized district NCES IDs and their corresponding index in the
-        __edge_tracker_matrix
-    __edge_tracker_idx_to_district_id_dict (dict of int: str): Mapping between
-        a district&#39;s index in the __edge_tracker_matrix and their respective
-        standardized NCES ID
-    __neighborhood_change_counter_dict (dict of str: int): Mapping between
-        standardized district NCES IDs and the number of cumulative changes made
-        in their neihborhood (i.e., number of schools redistricted)
-    __all_schools_assigned (bool): Initialization flag to signal whether all
-        schools have an assigned district
-
-    Methods:
-    get_school_by_id(school_id): Gets a optimization.entity_nodes.School
-        instance through its standardized NCES ID.
-    get_district_by_id(district_id): Gets a optimization.entity_nodes.District
-        instance through its standardized NCES ID.
-    get_district_by_school_id(school_id): Gets a
-        optimization.entity_nodes.District instance to which a given school&#39;s
-        standardized NCES ID is assigned to.
-    get_bordering_schools_by_district_id(district_id): Gets the set of
-        optimization.entity_nodes.School instances that belong to a district&#39;s
-        border (i.e., that neighbor other districts) through its standardized
-        NCES ID.
-    get_neighboor_districts_by_district_id(district_id): Gets the set of
-        optimization.entity_nodes.District instances that neighbor a specified
-        district, through its standardized NCES ID.
-    get_neighboorhood_changes_by_district_id(district_id): Gets the number of
-        cumulative changes made to a district&#39;s neighborhood (i.e., number of
-        schools redistricted) through its standardized NCES ID.
-    assign_school_to_district_by_id(school_id, new_district_id): Assigns a
-        school to a district, through their respective standardized NCES IDs. If
-        there exists a previous district assignment, the school is reassigned to
-        the new district.
-    __handle_incomplete_district_assignment(): Checks whether all schools are
-        assigned to a district and updates __all_schools_assigned accordingly.
-        The first time this flag is set to &#39;true&#39;, this method iterates over all
-        schools and districts to initialize all necessary attributes for lookup
-        speedup (i.e., __edge_tracker_matrix,
-        __district_id_to_edge_tracker_idx_dict,
-        __edge_tracker_idx_to_district_id_dict, and
-        __neighborhood_change_counter_dict).
-    __is_school_in_district_border(school_id, with_district_id=None): Checks
-        whether a school is at its assigned district&#39;s border. Beyond this first
-        condition, this method can also check if a school is bordering a
-        specific (neighboring) district.
-    __update_bordering_schools_by_district_id(moved_school_id, from_district_id,
-        to_district_id): Updates the set of bordering schools for two districts
-        involved in a school&#39;s district reassignment.
-    __update_district_neighborhoods_by_district_id(moved_school_id,
-        from_district_id, to_district_id): Updates the set of neighboring
-        districts for two districts involved in a school&#39;s district
-        reassignment. It also updates the number of existing edges between
-        involved pairs of neighbors.
-    __update_neighboorhood_change_counter(from_district_id, to_district_id):
-        Updates the number of cumulative changes (i.e., schools redistricted)
-        for two districts involved in a school&#39;s district reassignment and their
-        respective neighborhoods.
+        __school_dict (dict): Mapping between standardized school NCES IDs and
+            their respective School instances.
+        __district_dict (dict): Mapping between standardized district NCES IDs
+            and their respective District instances.
+        __assignment_dict (dict): Mapping between standardized school NCES IDs
+            and the District instance they are assigned to.
+        __bordering_dict (dict): Mapping between standardized district NCES IDs
+            and School instances at their border (i.e., schools that neighbor
+            other districts).
+        __edge_tracker_matrix (numpy.ndarray): Square matrix (2-dimensional
+            array), of &#39;districts x districts&#39; dimensions, that contains the
+            amount of existing edges between any pair of districts.
+        __district_id_to_edge_tracker_idx_dict (dict): Mapping between
+            standardized district NCES IDs and their corresponding index in the
+            __edge_tracker_matrix.
+        __edge_tracker_idx_to_district_id_dict (dict): Mapping between a
+            district&#39;s index in the __edge_tracker_matrix and their respective
+            standardized NCES ID.
+        __neighborhood_change_counter_dict (dict): Mapping between standardized
+            district NCES IDs and the number of cumulative changes made in their
+            neihborhood (i.e., number of schools redistricted).
+        __all_schools_assigned (bool): Initialization flag to signal whether all
+            schools have an assigned district
     &#34;&#34;&#34;
     __school_dict = None
     __district_dict = None
@@ -686,11 +550,11 @@ respective neighborhoods.</p></div>
         Gets a optimization.entity_nodes.School instance through its
         standardized NCES ID.
 
-        Parameters:
-        school_id (str): Standardized school NCES ID
+        Args:
+            school_id (str): Standardized school NCES ID.
 
         Returns:
-        optimization.entity_nodes.School: School object instance
+            optimization.entity_nodes.School: School object instance.
         &#34;&#34;&#34;
         return self.__school_dict.get(school_id, None)
     
@@ -699,11 +563,11 @@ respective neighborhoods.</p></div>
         Gets a optimization.entity_nodes.District instance through its
         standardized NCES ID.
 
-        Parameters:
-        district_id (str): Standardized district NCES ID
+        Args:
+            district_id (str): Standardized district NCES ID.
 
         Returns:
-        optimization.entity_nodes.District: District object instance
+            optimization.entity_nodes.District: District object instance.
         &#34;&#34;&#34;
         return self.__district_dict.get(district_id, None)
     
@@ -712,11 +576,11 @@ respective neighborhoods.</p></div>
         Gets a optimization.entity_nodes.District instance to which a given
         school&#39;s standardized NCES ID is assigned to.
 
-        Parameters:
-        school_id (str): Standardized school NCES ID
+        Args:
+            school_id (str): Standardized school NCES ID.
 
         Returns:
-        optimization.entity_nodes.District: District object instance
+            optimization.entity_nodes.District: District object instance.
         &#34;&#34;&#34;
         return self.__assignment_dict.get(school_id, None)
     
@@ -726,16 +590,16 @@ respective neighborhoods.</p></div>
         to a district&#39;s border (i.e., that neighbor other districts) through its
         standardized NCES ID.
 
-        Parameters:
-        district_id (str): Standardized district NCES ID
+        Args:
+            district_id (str): Standardized district NCES ID.
 
         Returns:
-        set of optimization.entity_nodes.School: Set of School instances at the
-            district&#39;s border
+            set of optimization.entity_nodes.School: Set of School instances at
+                the district&#39;s border.
 
         Raises:
-        ValueError: Whenever this method is called prior to finalizing school to
-            district assignment
+            ValueError: Whenever this method is called prior to finalizing
+                school to district assignment.
         &#34;&#34;&#34;
         if not self.__all_schools_assigned:
             raise ValueError(&#34;Attempting to retrieve bordering schools wo/ complete district assignment...&#34;)
@@ -746,16 +610,16 @@ respective neighborhoods.</p></div>
         Gets the set of optimization.entity_nodes.District instances that
         neighbor a specified district, through its standardized NCES ID.
 
-        Parameters:
-        district_id (str): Standardized district NCES ID
+        Args:
+            district_id (str): Standardized district NCES ID.
 
         Returns:
-        set of optimization.entity_nodes.District: Set of neighboring District
-            instances
+            set of optimization.entity_nodes.District: Set of neighboring
+                District instances.
 
         Raises:
-        ValueError: Whenever this method is called prior to finalizing school to
-            district assignment
+            ValueError: Whenever this method is called prior to finalizing
+                school to district assignment.
         &#34;&#34;&#34;
         if not self.__all_schools_assigned:
             raise ValueError(&#34;Attempting to retrieve neighbor districts wo/ complete district assignment...&#34;)
@@ -769,15 +633,15 @@ respective neighborhoods.</p></div>
         Gets the number of cumulative changes made to a district&#39;s neighborhood
         (i.e., number of schools redistricted) through its standardized NCES ID.
 
-        Parameters:
-        district_id (str): Standardized district NCES ID
+        Args:
+            district_id (str): Standardized district NCES ID.
 
         Returns:
-        int: Number of schools redistricted in District&#39;s neighborhood
+            int: Number of schools redistricted in District&#39;s neighborhood.
 
         Raises:
-        ValueError: Whenever this method is called prior to finalizing school to
-            district assignment
+            ValueError: Whenever this method is called prior to finalizing
+                school to district assignment.
         &#34;&#34;&#34;
         if not self.__all_schools_assigned:
             raise ValueError(&#34;Attempting to retrieve neighborhood changes wo/ complete district assignment...&#34;)
@@ -797,13 +661,13 @@ respective neighborhoods.</p></div>
         operations and ammortizes computational complexity of the overall
         algorithm.
 
-        Parameters:
-        school_id (str): Standardized target school NCES ID
-        new_district_id (str): Standardized assignment district NCES ID
+        Args:
+            school_id (str): Standardized target school NCES ID.
+            new_district_id (str): Standardized assignment district NCES ID.
 
         Raises:
-        AssertionError: Whenever a school is reassigned to a different district,
-            but isn&#39;t at its current district&#39;s border
+            AssertionError: Whenever a school is reassigned to a different
+                district, but isn&#39;t at its current district&#39;s border.
         &#34;&#34;&#34;
         old_district = self.get_district_by_school_id(school_id)
         new_district = self.get_district_by_id(new_district_id)
@@ -890,14 +754,15 @@ respective neighborhoods.</p></div>
         this first condition, this method can also check if a school is
         bordering a specific (neighboring) district.
 
-        Parameters:
-        school_id (str): Standardized target school NCES ID
-        with_district_id (str): Standardized neighboring district NCES ID, or
-            None
+        Args:
+            school_id (str): Standardized target school NCES ID.
+            with_district_id (str): Standardized neighboring district NCES ID,
+                or None.
 
         Returns:
-        bool: &#39;true&#39; if the school is at its assigned district&#39;s border (and,
-        optionally, if it neighbors a specific district), &#39;false&#39; otherwise
+            bool: &#39;true&#39; if the school is at its assigned district&#39;s border
+                (and, optionally, if it neighbors a specific district), &#39;false&#39;
+                otherwise.
         &#34;&#34;&#34;
         school = self.get_school_by_id(school_id)
         district = self.get_district_by_school_id(school_id)
@@ -917,10 +782,10 @@ respective neighborhoods.</p></div>
         Updates the set of bordering schools for two districts involved in a
         school&#39;s district reassignment.
 
-        Parameters:
-        moved_school_id (str): Standardized target school NCES ID
-        from_district_id (str): Standardized source district NCES ID
-        to_district_id (str): Standardized destination district NCES ID
+        Args:
+            moved_school_id (str): Standardized target school NCES ID.
+            from_district_id (str): Standardized source district NCES ID.
+            to_district_id (str): Standardized destination district NCES ID.
         &#34;&#34;&#34;
         moved_school = self.get_school_by_id(moved_school_id)
         from_district = self.get_district_by_id(from_district_id)
@@ -951,10 +816,10 @@ respective neighborhoods.</p></div>
         school&#39;s district reassignment. It also updates the number of existing
         edges between involved pairs of neighbors.
 
-        Parameters:
-        moved_school_id (str): Standardized target school NCES ID
-        from_district_id (str): Standardized source district NCES ID
-        to_district_id (str): Standardized destination district NCES ID
+        Args:
+            moved_school_id (str): Standardized target school NCES ID.
+            from_district_id (str): Standardized source district NCES ID.
+            to_district_id (str): Standardized destination district NCES ID.
         &#34;&#34;&#34;
         # Get number of edges between moved school and its neighbors&#39; districts
         moved_school = self.get_school_by_id(moved_school_id)
@@ -990,9 +855,9 @@ respective neighborhoods.</p></div>
         for two districts involved in a school&#39;s district reassignment and their
         respective neighborhoods.
 
-        Parameters:
-        from_district_id (str): Standardized source district NCES ID
-        to_district_id (str): Standardized destination district NCES ID
+        Args:
+            from_district_id (str): Standardized source district NCES ID.
+            to_district_id (str): Standardized destination district NCES ID.
         &#34;&#34;&#34;
         # Auxiliary method for single counter increments
         def inc_counter(district_id):
@@ -1025,12 +890,19 @@ bordering schools are adjusted; (ii) neighboring edge count is adjusted;
 stage, knowing the reassigned school's neighbors trivializes all these
 operations and ammortizes computational complexity of the overall
 algorithm.</p>
-<p>Parameters:
-school_id (str): Standardized target school NCES ID
-new_district_id (str): Standardized assignment district NCES ID</p>
-<p>Raises:
-AssertionError: Whenever a school is reassigned to a different district,
-but isn't at its current district's border</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>school_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized target school NCES ID.</dd>
+<dt><strong><code>new_district_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized assignment district NCES ID.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>AssertionError</code></dt>
+<dd>Whenever a school is reassigned to a different
+district, but isn't at its current district's border.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1049,13 +921,13 @@ but isn't at its current district's border</p></div>
     operations and ammortizes computational complexity of the overall
     algorithm.
 
-    Parameters:
-    school_id (str): Standardized target school NCES ID
-    new_district_id (str): Standardized assignment district NCES ID
+    Args:
+        school_id (str): Standardized target school NCES ID.
+        new_district_id (str): Standardized assignment district NCES ID.
 
     Raises:
-    AssertionError: Whenever a school is reassigned to a different district,
-        but isn&#39;t at its current district&#39;s border
+        AssertionError: Whenever a school is reassigned to a different
+            district, but isn&#39;t at its current district&#39;s border.
     &#34;&#34;&#34;
     old_district = self.get_district_by_school_id(school_id)
     new_district = self.get_district_by_id(new_district_id)
@@ -1094,14 +966,23 @@ but isn't at its current district's border</p></div>
 <div class="desc"><p>Gets the set of optimization.entity_nodes.School instances that belong
 to a district's border (i.e., that neighbor other districts) through its
 standardized NCES ID.</p>
-<p>Parameters:
-district_id (str): Standardized district NCES ID</p>
-<p>Returns:
-set of optimization.entity_nodes.School: Set of School instances at the
-district's border</p>
-<p>Raises:
-ValueError: Whenever this method is called prior to finalizing school to
-district assignment</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>district_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized district NCES ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>set</code> of <code>optimization.entity_nodes.School</code></dt>
+<dd>Set of School instances at
+the district's border.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>Whenever this method is called prior to finalizing
+school to district assignment.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1112,16 +993,16 @@ district assignment</p></div>
     to a district&#39;s border (i.e., that neighbor other districts) through its
     standardized NCES ID.
 
-    Parameters:
-    district_id (str): Standardized district NCES ID
+    Args:
+        district_id (str): Standardized district NCES ID.
 
     Returns:
-    set of optimization.entity_nodes.School: Set of School instances at the
-        district&#39;s border
+        set of optimization.entity_nodes.School: Set of School instances at
+            the district&#39;s border.
 
     Raises:
-    ValueError: Whenever this method is called prior to finalizing school to
-        district assignment
+        ValueError: Whenever this method is called prior to finalizing
+            school to district assignment.
     &#34;&#34;&#34;
     if not self.__all_schools_assigned:
         raise ValueError(&#34;Attempting to retrieve bordering schools wo/ complete district assignment...&#34;)
@@ -1134,10 +1015,16 @@ district assignment</p></div>
 <dd>
 <div class="desc"><p>Gets a optimization.entity_nodes.District instance through its
 standardized NCES ID.</p>
-<p>Parameters:
-district_id (str): Standardized district NCES ID</p>
-<p>Returns:
-optimization.entity_nodes.District: District object instance</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>district_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized district NCES ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>optimization.entity_nodes.District</code></dt>
+<dd>District object instance.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1147,11 +1034,11 @@ optimization.entity_nodes.District: District object instance</p></div>
     Gets a optimization.entity_nodes.District instance through its
     standardized NCES ID.
 
-    Parameters:
-    district_id (str): Standardized district NCES ID
+    Args:
+        district_id (str): Standardized district NCES ID.
 
     Returns:
-    optimization.entity_nodes.District: District object instance
+        optimization.entity_nodes.District: District object instance.
     &#34;&#34;&#34;
     return self.__district_dict.get(district_id, None)</code></pre>
 </details>
@@ -1162,10 +1049,16 @@ optimization.entity_nodes.District: District object instance</p></div>
 <dd>
 <div class="desc"><p>Gets a optimization.entity_nodes.District instance to which a given
 school's standardized NCES ID is assigned to.</p>
-<p>Parameters:
-school_id (str): Standardized school NCES ID</p>
-<p>Returns:
-optimization.entity_nodes.District: District object instance</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>school_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized school NCES ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>optimization.entity_nodes.District</code></dt>
+<dd>District object instance.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1175,11 +1068,11 @@ optimization.entity_nodes.District: District object instance</p></div>
     Gets a optimization.entity_nodes.District instance to which a given
     school&#39;s standardized NCES ID is assigned to.
 
-    Parameters:
-    school_id (str): Standardized school NCES ID
+    Args:
+        school_id (str): Standardized school NCES ID.
 
     Returns:
-    optimization.entity_nodes.District: District object instance
+        optimization.entity_nodes.District: District object instance.
     &#34;&#34;&#34;
     return self.__assignment_dict.get(school_id, None)</code></pre>
 </details>
@@ -1190,14 +1083,23 @@ optimization.entity_nodes.District: District object instance</p></div>
 <dd>
 <div class="desc"><p>Gets the set of optimization.entity_nodes.District instances that
 neighbor a specified district, through its standardized NCES ID.</p>
-<p>Parameters:
-district_id (str): Standardized district NCES ID</p>
-<p>Returns:
-set of optimization.entity_nodes.District: Set of neighboring District
-instances</p>
-<p>Raises:
-ValueError: Whenever this method is called prior to finalizing school to
-district assignment</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>district_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized district NCES ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>set</code> of <code>optimization.entity_nodes.District</code></dt>
+<dd>Set of neighboring
+District instances.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>Whenever this method is called prior to finalizing
+school to district assignment.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1207,16 +1109,16 @@ district assignment</p></div>
     Gets the set of optimization.entity_nodes.District instances that
     neighbor a specified district, through its standardized NCES ID.
 
-    Parameters:
-    district_id (str): Standardized district NCES ID
+    Args:
+        district_id (str): Standardized district NCES ID.
 
     Returns:
-    set of optimization.entity_nodes.District: Set of neighboring District
-        instances
+        set of optimization.entity_nodes.District: Set of neighboring
+            District instances.
 
     Raises:
-    ValueError: Whenever this method is called prior to finalizing school to
-        district assignment
+        ValueError: Whenever this method is called prior to finalizing
+            school to district assignment.
     &#34;&#34;&#34;
     if not self.__all_schools_assigned:
         raise ValueError(&#34;Attempting to retrieve neighbor districts wo/ complete district assignment...&#34;)
@@ -1232,13 +1134,22 @@ district assignment</p></div>
 <dd>
 <div class="desc"><p>Gets the number of cumulative changes made to a district's neighborhood
 (i.e., number of schools redistricted) through its standardized NCES ID.</p>
-<p>Parameters:
-district_id (str): Standardized district NCES ID</p>
-<p>Returns:
-int: Number of schools redistricted in District's neighborhood</p>
-<p>Raises:
-ValueError: Whenever this method is called prior to finalizing school to
-district assignment</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>district_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized district NCES ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>Number of schools redistricted in District's neighborhood.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>Whenever this method is called prior to finalizing
+school to district assignment.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1248,15 +1159,15 @@ district assignment</p></div>
     Gets the number of cumulative changes made to a district&#39;s neighborhood
     (i.e., number of schools redistricted) through its standardized NCES ID.
 
-    Parameters:
-    district_id (str): Standardized district NCES ID
+    Args:
+        district_id (str): Standardized district NCES ID.
 
     Returns:
-    int: Number of schools redistricted in District&#39;s neighborhood
+        int: Number of schools redistricted in District&#39;s neighborhood.
 
     Raises:
-    ValueError: Whenever this method is called prior to finalizing school to
-        district assignment
+        ValueError: Whenever this method is called prior to finalizing
+            school to district assignment.
     &#34;&#34;&#34;
     if not self.__all_schools_assigned:
         raise ValueError(&#34;Attempting to retrieve neighborhood changes wo/ complete district assignment...&#34;)
@@ -1269,10 +1180,16 @@ district assignment</p></div>
 <dd>
 <div class="desc"><p>Gets a optimization.entity_nodes.School instance through its
 standardized NCES ID.</p>
-<p>Parameters:
-school_id (str): Standardized school NCES ID</p>
-<p>Returns:
-optimization.entity_nodes.School: School object instance</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>school_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>Standardized school NCES ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>optimization.entity_nodes.School</code></dt>
+<dd>School object instance.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1282,11 +1199,11 @@ optimization.entity_nodes.School: School object instance</p></div>
     Gets a optimization.entity_nodes.School instance through its
     standardized NCES ID.
 
-    Parameters:
-    school_id (str): Standardized school NCES ID
+    Args:
+        school_id (str): Standardized school NCES ID.
 
     Returns:
-    optimization.entity_nodes.School: School object instance
+        optimization.entity_nodes.School: School object instance.
     &#34;&#34;&#34;
     return self.__school_dict.get(school_id, None)</code></pre>
 </details>

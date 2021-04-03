@@ -12,6 +12,7 @@
 <style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
 <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
 <script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
@@ -38,47 +39,25 @@ class RunMetrics:
     used as callbacks at specific points of its iterations.
 
     Attributes:
-    __per_student_funding_whole_state (float): Per-student funding across the
-        state
-    __spatial_inequality_values (list of float): List of inequality values,
-        registered throughout the algorithm&#39;s run
-    __percentage_of_schools_redistricted (list of float): List of percentages
-        of schools redistricted at each iteration of the algorithm, compared to
-        their initial assignment
-    __number_of_districts (list of int): List of absolute number of existing
-        district at each iteration
-    __move_history (list of tuple): List of all redistricting moves performed
-        throughout the algorithm&#39;s run, containing a school&#39;s standardized NCES
-        ID, a source district&#39;s standardized NCES ID, and a destination
-        district&#39;s standardized NCES ID
-    __district_assignment_by_school_id (dict of str: dict): Mapping between a
-        checkpoint label (i.e., &#39;before&#39; or &#39;after&#39;) and the corresponding
-        school/district assignment
-    __per_student_funding_by_district_id (dict of str: dict): Mapping between a
-        checkpoint label (i.e., &#39;before&#39; or &#39;after&#39;) and the corresponding
-        per-student funding
-
-    Methods:
-    on_init(schools, districts, lookup): Initializes necessary class&#39; attributes
-        and stores initial metrics&#39; values (prior to the algorithm&#39;s
-        iterations).
-    on_end(schools, districts, lookup): Initializes necessary class&#39; attributes
-        and stores final metrics&#39; values (after the algorithm concludes its
-        run).
-    on_update(schools, districts, lookup): Updates necessary class&#39; attributes
-        and calculates runtime metrics&#39; values (during the algorithm&#39;s run).
-    on_move(iteration_idx, moves): Registers all redistricting moves performed
-        during one of the algorithm&#39;s iterations.
-    as_dict(): Creates a dictionary containing all metrics tracked.
-    to_file(filepath): Writes all tracked metrics to a JSON-formatted file.
-    __checkpoint_before_and_after_measurements(schools, districts, lookup,
-        label): Auxiliary method to handle class&#39; attributes
-        update/initialization upon the algorithm&#39;s start or end.
-    __calculate_inequality(districts, lookup): Auxiliary method to calculate
-        spatial inequality for current school/district assignment.
-    __calculate_percentage_of_schools_redistricted(schools, lookup): Auxiliary
-        method to calculate the percentage of schools that are currently
-        redistricted (compared to their initial assignment).
+        __per_student_funding_whole_state (float): Per-student funding across
+            the state.
+        __spatial_inequality_values (list of float): List of inequality values,
+            registered throughout the algorithm&#39;s run.
+        __percentage_of_schools_redistricted (list of float): List of
+            percentages of schools redistricted at each iteration of the
+            algorithm, compared to their initial assignment.
+        __number_of_districts (list of int): List of absolute number of existing
+            district at each iteration.
+        __move_history (list of tuple): List of all redistricting moves
+            performed throughout the algorithm&#39;s run, containing a school&#39;s
+            standardized NCES ID, a source district&#39;s standardized NCES ID, and
+            a destination district&#39;s standardized NCES ID.
+        __district_assignment_by_school_id (dict of str: dict): Mapping between
+            a checkpoint label (i.e., &#39;before&#39; or &#39;after&#39;) and the corresponding
+            school/district assignment.
+        __per_student_funding_by_district_id (dict of str: dict): Mapping
+            between a checkpoint label (i.e., &#39;before&#39; or &#39;after&#39;) and the
+            corresponding per-student funding.
     &#34;&#34;&#34;
     # One time measurements
     __per_student_funding_whole_state = None
@@ -116,12 +95,12 @@ class RunMetrics:
         This method should be called immediately after school/district
         assignment is finalized.
 
-        Parameters:
-        schools (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            schools (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
         &#34;&#34;&#34;
         # Calculate average funding per student
         total_funding_in_state = sum(map(lambda x: x.get_total_funding(), districts))
@@ -139,12 +118,12 @@ class RunMetrics:
         This method should be called at the end of the algorithm&#39;s last
         iteration.
 
-        Parameters:
-        schools (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            schools (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
         &#34;&#34;&#34;
         self.__checkpoint_before_and_after_measurements(schools, districts, lookup, &#34;after&#34;)
         self.on_update(schools, districts, lookup)
@@ -158,12 +137,12 @@ class RunMetrics:
         This method should be called at the end of each of the algorithm&#39;s
         iterations.
 
-        Parameters:
-        schools (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            schools (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
         &#34;&#34;&#34;
         # Calculate inequality
         cur_inequality = self.__calculate_inequality(districts, lookup)
@@ -183,13 +162,14 @@ class RunMetrics:
         iterations, immediately after schools are effectively redistricted. If
         schools are not redistricted, this method needs not be called.
 
-        Parameters:
-        iteration_idx (int): Current iteration&#39;s index (needs not be a
-            continuous variable)
-        moves (list of tuple): List of all moves performed during the current
-            iteration of the algorithm (i.e., tuples comprised of a redistricted
-            school standardized NCES ID, its source district standardized NCES
-            ID and its destination district standardized NCES ID) 
+        Args:
+            iteration_idx (int): Current iteration&#39;s index (needs not be a
+                continuous variable).
+            moves (list of tuple): List of all moves performed during the
+                current iteration of the algorithm (i.e., tuples comprised of a
+                redistricted school standardized NCES ID, its source district
+                standardized NCES ID and its destination district standardized
+                NCES ID).
         &#34;&#34;&#34;
         for move in moves:
             # Get configuration
@@ -209,7 +189,7 @@ class RunMetrics:
         Creates a dictionary containing all metrics tracked.
 
         Returns:
-        dict: Resulting dictionary with tracked metrics
+            dict: Resulting dictionary with tracked metrics.
         &#34;&#34;&#34;
         return {
             # Overtime measurements
@@ -229,9 +209,9 @@ class RunMetrics:
         &#34;&#34;&#34;
         Writes all tracked metrics to a JSON-formatted file.
 
-        Parameters:
-        filepath (str): Full path for output file, including filename and
-            extension
+        Args:
+            filepath (str): Full path for output file, including filename and
+                extension.
         &#34;&#34;&#34;
         with open(filepath, &#34;w&#34;) as file:
             json.dump(self.as_dict(), file)
@@ -244,18 +224,18 @@ class RunMetrics:
         Auxiliary method to handle class&#39; attributes update/initialization upon
         the algorithm&#39;s start or end.
 
-        Parameters:
-        schools (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
-        label (str): Should be &#39;before&#39; or &#39;after&#39;
+        Args:
+            schools (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
+            label (str): Should be &#39;before&#39; or &#39;after&#39;.
 
         Raises:
-        AssertionError: Whenever there is an invalid school/district assignment,
-            missing information on number of students or overall funding, or
-            when an invalid label is provided
+            AssertionError: Whenever there is an invalid school/district
+                assignment, missing information on number of students or overall
+                funding, or when an invalid label is provided.
         &#34;&#34;&#34;
         assert(self.__district_assignment_by_school_id is not None)
         assert(self.__per_student_funding_by_district_id is not None)
@@ -279,13 +259,13 @@ class RunMetrics:
         Auxiliary method to calculate spatial inequality for current
         school/district assignment.
 
-        Parameters:
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
 
         Returns:
-        float: Spatial inequality index
+            float: Spatial inequality index.
         &#34;&#34;&#34;
         get_per_student_funding = lambda district: district.get_total_funding() / district.get_total_students()
         abs_funding_diff = lambda x,y: abs(get_per_student_funding(x) - get_per_student_funding(y))
@@ -307,13 +287,13 @@ class RunMetrics:
         Auxiliary method to calculate the percentage of schools that are
         currently redistricted (compared to their initial assignment).
 
-        Parameters:
-        districts (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            districts (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
 
         Returns:
-        float: Percentage of currently redistricted schools
+            float: Percentage of currently redistricted schools.
         &#34;&#34;&#34;
         # Get initial assignment
         initial_district_assignment = self.__district_assignment_by_school_id[&#34;before&#34;]
@@ -349,47 +329,33 @@ class RunMetrics:
 <div class="desc"><p>This class is used to track metrics over a single run of the redistricting
 algorithm (done over a single state). Most of its methods are intended to be
 used as callbacks at specific points of its iterations.</p>
-<p>Attributes:
-__per_student_funding_whole_state (float): Per-student funding across the
-state
-__spatial_inequality_values (list of float): List of inequality values,
-registered throughout the algorithm's run
-__percentage_of_schools_redistricted (list of float): List of percentages
-of schools redistricted at each iteration of the algorithm, compared to
-their initial assignment
-__number_of_districts (list of int): List of absolute number of existing
-district at each iteration
-__move_history (list of tuple): List of all redistricting moves performed
-throughout the algorithm's run, containing a school's standardized NCES
-ID, a source district's standardized NCES ID, and a destination
-district's standardized NCES ID
-__district_assignment_by_school_id (dict of str: dict): Mapping between a
-checkpoint label (i.e., 'before' or 'after') and the corresponding
-school/district assignment
-__per_student_funding_by_district_id (dict of str: dict): Mapping between a
-checkpoint label (i.e., 'before' or 'after') and the corresponding
-per-student funding</p>
-<p>Methods:
-on_init(schools, districts, lookup): Initializes necessary class' attributes
-and stores initial metrics' values (prior to the algorithm's
-iterations).
-on_end(schools, districts, lookup): Initializes necessary class' attributes
-and stores final metrics' values (after the algorithm concludes its
-run).
-on_update(schools, districts, lookup): Updates necessary class' attributes
-and calculates runtime metrics' values (during the algorithm's run).
-on_move(iteration_idx, moves): Registers all redistricting moves performed
-during one of the algorithm's iterations.
-as_dict(): Creates a dictionary containing all metrics tracked.
-to_file(filepath): Writes all tracked metrics to a JSON-formatted file.
-__checkpoint_before_and_after_measurements(schools, districts, lookup,
-label): Auxiliary method to handle class' attributes
-update/initialization upon the algorithm's start or end.
-__calculate_inequality(districts, lookup): Auxiliary method to calculate
-spatial inequality for current school/district assignment.
-__calculate_percentage_of_schools_redistricted(schools, lookup): Auxiliary
-method to calculate the percentage of schools that are currently
-redistricted (compared to their initial assignment).</p></div>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>__per_student_funding_whole_state</code></strong> :&ensp;<code>float</code></dt>
+<dd>Per-student funding across
+the state.</dd>
+<dt><strong><code>__spatial_inequality_values</code></strong> :&ensp;<code>list</code> of <code>float</code></dt>
+<dd>List of inequality values,
+registered throughout the algorithm's run.</dd>
+<dt><strong><code>__percentage_of_schools_redistricted</code></strong> :&ensp;<code>list</code> of <code>float</code></dt>
+<dd>List of
+percentages of schools redistricted at each iteration of the
+algorithm, compared to their initial assignment.</dd>
+<dt><strong><code>__number_of_districts</code></strong> :&ensp;<code>list</code> of <code>int</code></dt>
+<dd>List of absolute number of existing
+district at each iteration.</dd>
+<dt><strong><code>__move_history</code></strong> :&ensp;<code>list</code> of <code>tuple</code></dt>
+<dd>List of all redistricting moves
+performed throughout the algorithm's run, containing a school's
+standardized NCES ID, a source district's standardized NCES ID, and
+a destination district's standardized NCES ID.</dd>
+</dl>
+<p>__district_assignment_by_school_id (dict of str: dict): Mapping between
+a checkpoint label (i.e., 'before' or 'after') and the corresponding
+school/district assignment.
+__per_student_funding_by_district_id (dict of str: dict): Mapping
+between a checkpoint label (i.e., 'before' or 'after') and the
+corresponding per-student funding.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -401,47 +367,25 @@ redistricted (compared to their initial assignment).</p></div>
     used as callbacks at specific points of its iterations.
 
     Attributes:
-    __per_student_funding_whole_state (float): Per-student funding across the
-        state
-    __spatial_inequality_values (list of float): List of inequality values,
-        registered throughout the algorithm&#39;s run
-    __percentage_of_schools_redistricted (list of float): List of percentages
-        of schools redistricted at each iteration of the algorithm, compared to
-        their initial assignment
-    __number_of_districts (list of int): List of absolute number of existing
-        district at each iteration
-    __move_history (list of tuple): List of all redistricting moves performed
-        throughout the algorithm&#39;s run, containing a school&#39;s standardized NCES
-        ID, a source district&#39;s standardized NCES ID, and a destination
-        district&#39;s standardized NCES ID
-    __district_assignment_by_school_id (dict of str: dict): Mapping between a
-        checkpoint label (i.e., &#39;before&#39; or &#39;after&#39;) and the corresponding
-        school/district assignment
-    __per_student_funding_by_district_id (dict of str: dict): Mapping between a
-        checkpoint label (i.e., &#39;before&#39; or &#39;after&#39;) and the corresponding
-        per-student funding
-
-    Methods:
-    on_init(schools, districts, lookup): Initializes necessary class&#39; attributes
-        and stores initial metrics&#39; values (prior to the algorithm&#39;s
-        iterations).
-    on_end(schools, districts, lookup): Initializes necessary class&#39; attributes
-        and stores final metrics&#39; values (after the algorithm concludes its
-        run).
-    on_update(schools, districts, lookup): Updates necessary class&#39; attributes
-        and calculates runtime metrics&#39; values (during the algorithm&#39;s run).
-    on_move(iteration_idx, moves): Registers all redistricting moves performed
-        during one of the algorithm&#39;s iterations.
-    as_dict(): Creates a dictionary containing all metrics tracked.
-    to_file(filepath): Writes all tracked metrics to a JSON-formatted file.
-    __checkpoint_before_and_after_measurements(schools, districts, lookup,
-        label): Auxiliary method to handle class&#39; attributes
-        update/initialization upon the algorithm&#39;s start or end.
-    __calculate_inequality(districts, lookup): Auxiliary method to calculate
-        spatial inequality for current school/district assignment.
-    __calculate_percentage_of_schools_redistricted(schools, lookup): Auxiliary
-        method to calculate the percentage of schools that are currently
-        redistricted (compared to their initial assignment).
+        __per_student_funding_whole_state (float): Per-student funding across
+            the state.
+        __spatial_inequality_values (list of float): List of inequality values,
+            registered throughout the algorithm&#39;s run.
+        __percentage_of_schools_redistricted (list of float): List of
+            percentages of schools redistricted at each iteration of the
+            algorithm, compared to their initial assignment.
+        __number_of_districts (list of int): List of absolute number of existing
+            district at each iteration.
+        __move_history (list of tuple): List of all redistricting moves
+            performed throughout the algorithm&#39;s run, containing a school&#39;s
+            standardized NCES ID, a source district&#39;s standardized NCES ID, and
+            a destination district&#39;s standardized NCES ID.
+        __district_assignment_by_school_id (dict of str: dict): Mapping between
+            a checkpoint label (i.e., &#39;before&#39; or &#39;after&#39;) and the corresponding
+            school/district assignment.
+        __per_student_funding_by_district_id (dict of str: dict): Mapping
+            between a checkpoint label (i.e., &#39;before&#39; or &#39;after&#39;) and the
+            corresponding per-student funding.
     &#34;&#34;&#34;
     # One time measurements
     __per_student_funding_whole_state = None
@@ -479,12 +423,12 @@ redistricted (compared to their initial assignment).</p></div>
         This method should be called immediately after school/district
         assignment is finalized.
 
-        Parameters:
-        schools (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            schools (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
         &#34;&#34;&#34;
         # Calculate average funding per student
         total_funding_in_state = sum(map(lambda x: x.get_total_funding(), districts))
@@ -502,12 +446,12 @@ redistricted (compared to their initial assignment).</p></div>
         This method should be called at the end of the algorithm&#39;s last
         iteration.
 
-        Parameters:
-        schools (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            schools (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
         &#34;&#34;&#34;
         self.__checkpoint_before_and_after_measurements(schools, districts, lookup, &#34;after&#34;)
         self.on_update(schools, districts, lookup)
@@ -521,12 +465,12 @@ redistricted (compared to their initial assignment).</p></div>
         This method should be called at the end of each of the algorithm&#39;s
         iterations.
 
-        Parameters:
-        schools (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            schools (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
         &#34;&#34;&#34;
         # Calculate inequality
         cur_inequality = self.__calculate_inequality(districts, lookup)
@@ -546,13 +490,14 @@ redistricted (compared to their initial assignment).</p></div>
         iterations, immediately after schools are effectively redistricted. If
         schools are not redistricted, this method needs not be called.
 
-        Parameters:
-        iteration_idx (int): Current iteration&#39;s index (needs not be a
-            continuous variable)
-        moves (list of tuple): List of all moves performed during the current
-            iteration of the algorithm (i.e., tuples comprised of a redistricted
-            school standardized NCES ID, its source district standardized NCES
-            ID and its destination district standardized NCES ID) 
+        Args:
+            iteration_idx (int): Current iteration&#39;s index (needs not be a
+                continuous variable).
+            moves (list of tuple): List of all moves performed during the
+                current iteration of the algorithm (i.e., tuples comprised of a
+                redistricted school standardized NCES ID, its source district
+                standardized NCES ID and its destination district standardized
+                NCES ID).
         &#34;&#34;&#34;
         for move in moves:
             # Get configuration
@@ -572,7 +517,7 @@ redistricted (compared to their initial assignment).</p></div>
         Creates a dictionary containing all metrics tracked.
 
         Returns:
-        dict: Resulting dictionary with tracked metrics
+            dict: Resulting dictionary with tracked metrics.
         &#34;&#34;&#34;
         return {
             # Overtime measurements
@@ -592,9 +537,9 @@ redistricted (compared to their initial assignment).</p></div>
         &#34;&#34;&#34;
         Writes all tracked metrics to a JSON-formatted file.
 
-        Parameters:
-        filepath (str): Full path for output file, including filename and
-            extension
+        Args:
+            filepath (str): Full path for output file, including filename and
+                extension.
         &#34;&#34;&#34;
         with open(filepath, &#34;w&#34;) as file:
             json.dump(self.as_dict(), file)
@@ -607,18 +552,18 @@ redistricted (compared to their initial assignment).</p></div>
         Auxiliary method to handle class&#39; attributes update/initialization upon
         the algorithm&#39;s start or end.
 
-        Parameters:
-        schools (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
-        label (str): Should be &#39;before&#39; or &#39;after&#39;
+        Args:
+            schools (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
+            label (str): Should be &#39;before&#39; or &#39;after&#39;.
 
         Raises:
-        AssertionError: Whenever there is an invalid school/district assignment,
-            missing information on number of students or overall funding, or
-            when an invalid label is provided
+            AssertionError: Whenever there is an invalid school/district
+                assignment, missing information on number of students or overall
+                funding, or when an invalid label is provided.
         &#34;&#34;&#34;
         assert(self.__district_assignment_by_school_id is not None)
         assert(self.__per_student_funding_by_district_id is not None)
@@ -642,13 +587,13 @@ redistricted (compared to their initial assignment).</p></div>
         Auxiliary method to calculate spatial inequality for current
         school/district assignment.
 
-        Parameters:
-        districts (list of optimization.entity_nodes.District): List of all
-            initialized District instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            districts (list of optimization.entity_nodes.District): List of all
+                initialized District instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
 
         Returns:
-        float: Spatial inequality index
+            float: Spatial inequality index.
         &#34;&#34;&#34;
         get_per_student_funding = lambda district: district.get_total_funding() / district.get_total_students()
         abs_funding_diff = lambda x,y: abs(get_per_student_funding(x) - get_per_student_funding(y))
@@ -670,13 +615,13 @@ redistricted (compared to their initial assignment).</p></div>
         Auxiliary method to calculate the percentage of schools that are
         currently redistricted (compared to their initial assignment).
 
-        Parameters:
-        districts (list of optimization.entity_nodes.School): List of all
-            initialized School instances
-        lookup (optimization.lookup.Lookup): Lookup instance
+        Args:
+            districts (list of optimization.entity_nodes.School): List of all
+                initialized School instances.
+            lookup (optimization.lookup.Lookup): Lookup instance.
 
         Returns:
-        float: Percentage of currently redistricted schools
+            float: Percentage of currently redistricted schools.
         &#34;&#34;&#34;
         # Get initial assignment
         initial_district_assignment = self.__district_assignment_by_school_id[&#34;before&#34;]
@@ -702,8 +647,11 @@ redistricted (compared to their initial assignment).</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Creates a dictionary containing all metrics tracked.</p>
-<p>Returns:
-dict: Resulting dictionary with tracked metrics</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Resulting dictionary with tracked metrics.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -713,7 +661,7 @@ dict: Resulting dictionary with tracked metrics</p></div>
     Creates a dictionary containing all metrics tracked.
 
     Returns:
-    dict: Resulting dictionary with tracked metrics
+        dict: Resulting dictionary with tracked metrics.
     &#34;&#34;&#34;
     return {
         # Overtime measurements
@@ -738,12 +686,17 @@ dict: Resulting dictionary with tracked metrics</p></div>
 values (after the algorithm concludes its run).</p>
 <p>This method should be called at the end of the algorithm's last
 iteration.</p>
-<p>Parameters:
-schools (list of optimization.entity_nodes.School): List of all
-initialized School instances
-districts (list of optimization.entity_nodes.District): List of all
-initialized District instances
-lookup (optimization.lookup.Lookup): Lookup instance</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>schools</code></strong> :&ensp;<code>list</code> of <code>optimization.entity_nodes.School</code></dt>
+<dd>List of all
+initialized School instances.</dd>
+<dt><strong><code>districts</code></strong> :&ensp;<code>list</code> of <code>optimization.entity_nodes.District</code></dt>
+<dd>List of all
+initialized District instances.</dd>
+<dt><strong><code>lookup</code></strong> :&ensp;<code>optimization.lookup.Lookup</code></dt>
+<dd>Lookup instance.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -756,12 +709,12 @@ lookup (optimization.lookup.Lookup): Lookup instance</p></div>
     This method should be called at the end of the algorithm&#39;s last
     iteration.
 
-    Parameters:
-    schools (list of optimization.entity_nodes.School): List of all
-        initialized School instances
-    districts (list of optimization.entity_nodes.District): List of all
-        initialized District instances
-    lookup (optimization.lookup.Lookup): Lookup instance
+    Args:
+        schools (list of optimization.entity_nodes.School): List of all
+            initialized School instances.
+        districts (list of optimization.entity_nodes.District): List of all
+            initialized District instances.
+        lookup (optimization.lookup.Lookup): Lookup instance.
     &#34;&#34;&#34;
     self.__checkpoint_before_and_after_measurements(schools, districts, lookup, &#34;after&#34;)
     self.on_update(schools, districts, lookup)
@@ -776,12 +729,17 @@ lookup (optimization.lookup.Lookup): Lookup instance</p></div>
 values (prior to the algorithm's iterations).</p>
 <p>This method should be called immediately after school/district
 assignment is finalized.</p>
-<p>Parameters:
-schools (list of optimization.entity_nodes.School): List of all
-initialized School instances
-districts (list of optimization.entity_nodes.District): List of all
-initialized District instances
-lookup (optimization.lookup.Lookup): Lookup instance</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>schools</code></strong> :&ensp;<code>list</code> of <code>optimization.entity_nodes.School</code></dt>
+<dd>List of all
+initialized School instances.</dd>
+<dt><strong><code>districts</code></strong> :&ensp;<code>list</code> of <code>optimization.entity_nodes.District</code></dt>
+<dd>List of all
+initialized District instances.</dd>
+<dt><strong><code>lookup</code></strong> :&ensp;<code>optimization.lookup.Lookup</code></dt>
+<dd>Lookup instance.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -794,12 +752,12 @@ lookup (optimization.lookup.Lookup): Lookup instance</p></div>
     This method should be called immediately after school/district
     assignment is finalized.
 
-    Parameters:
-    schools (list of optimization.entity_nodes.School): List of all
-        initialized School instances
-    districts (list of optimization.entity_nodes.District): List of all
-        initialized District instances
-    lookup (optimization.lookup.Lookup): Lookup instance
+    Args:
+        schools (list of optimization.entity_nodes.School): List of all
+            initialized School instances.
+        districts (list of optimization.entity_nodes.District): List of all
+            initialized District instances.
+        lookup (optimization.lookup.Lookup): Lookup instance.
     &#34;&#34;&#34;
     # Calculate average funding per student
     total_funding_in_state = sum(map(lambda x: x.get_total_funding(), districts))
@@ -819,13 +777,18 @@ algorithm's iterations.</p>
 <p>This method should be called during any/all of the algorithm's
 iterations, immediately after schools are effectively redistricted. If
 schools are not redistricted, this method needs not be called.</p>
-<p>Parameters:
-iteration_idx (int): Current iteration's index (needs not be a
-continuous variable)
-moves (list of tuple): List of all moves performed during the current
-iteration of the algorithm (i.e., tuples comprised of a redistricted
-school standardized NCES ID, its source district standardized NCES
-ID and its destination district standardized NCES ID)</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>iteration_idx</code></strong> :&ensp;<code>int</code></dt>
+<dd>Current iteration's index (needs not be a
+continuous variable).</dd>
+<dt><strong><code>moves</code></strong> :&ensp;<code>list</code> of <code>tuple</code></dt>
+<dd>List of all moves performed during the
+current iteration of the algorithm (i.e., tuples comprised of a
+redistricted school standardized NCES ID, its source district
+standardized NCES ID and its destination district standardized
+NCES ID).</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -839,13 +802,14 @@ ID and its destination district standardized NCES ID)</p></div>
     iterations, immediately after schools are effectively redistricted. If
     schools are not redistricted, this method needs not be called.
 
-    Parameters:
-    iteration_idx (int): Current iteration&#39;s index (needs not be a
-        continuous variable)
-    moves (list of tuple): List of all moves performed during the current
-        iteration of the algorithm (i.e., tuples comprised of a redistricted
-        school standardized NCES ID, its source district standardized NCES
-        ID and its destination district standardized NCES ID) 
+    Args:
+        iteration_idx (int): Current iteration&#39;s index (needs not be a
+            continuous variable).
+        moves (list of tuple): List of all moves performed during the
+            current iteration of the algorithm (i.e., tuples comprised of a
+            redistricted school standardized NCES ID, its source district
+            standardized NCES ID and its destination district standardized
+            NCES ID).
     &#34;&#34;&#34;
     for move in moves:
         # Get configuration
@@ -869,12 +833,17 @@ ID and its destination district standardized NCES ID)</p></div>
 values (during the algorithm's run).</p>
 <p>This method should be called at the end of each of the algorithm's
 iterations.</p>
-<p>Parameters:
-schools (list of optimization.entity_nodes.School): List of all
-initialized School instances
-districts (list of optimization.entity_nodes.District): List of all
-initialized District instances
-lookup (optimization.lookup.Lookup): Lookup instance</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>schools</code></strong> :&ensp;<code>list</code> of <code>optimization.entity_nodes.School</code></dt>
+<dd>List of all
+initialized School instances.</dd>
+<dt><strong><code>districts</code></strong> :&ensp;<code>list</code> of <code>optimization.entity_nodes.District</code></dt>
+<dd>List of all
+initialized District instances.</dd>
+<dt><strong><code>lookup</code></strong> :&ensp;<code>optimization.lookup.Lookup</code></dt>
+<dd>Lookup instance.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -887,12 +856,12 @@ lookup (optimization.lookup.Lookup): Lookup instance</p></div>
     This method should be called at the end of each of the algorithm&#39;s
     iterations.
 
-    Parameters:
-    schools (list of optimization.entity_nodes.School): List of all
-        initialized School instances
-    districts (list of optimization.entity_nodes.District): List of all
-        initialized District instances
-    lookup (optimization.lookup.Lookup): Lookup instance
+    Args:
+        schools (list of optimization.entity_nodes.School): List of all
+            initialized School instances.
+        districts (list of optimization.entity_nodes.District): List of all
+            initialized District instances.
+        lookup (optimization.lookup.Lookup): Lookup instance.
     &#34;&#34;&#34;
     # Calculate inequality
     cur_inequality = self.__calculate_inequality(districts, lookup)
@@ -909,9 +878,12 @@ lookup (optimization.lookup.Lookup): Lookup instance</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Writes all tracked metrics to a JSON-formatted file.</p>
-<p>Parameters:
-filepath (str): Full path for output file, including filename and
-extension</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>filepath</code></strong> :&ensp;<code>str</code></dt>
+<dd>Full path for output file, including filename and
+extension.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -920,9 +892,9 @@ extension</p></div>
     &#34;&#34;&#34;
     Writes all tracked metrics to a JSON-formatted file.
 
-    Parameters:
-    filepath (str): Full path for output file, including filename and
-        extension
+    Args:
+        filepath (str): Full path for output file, including filename and
+            extension.
     &#34;&#34;&#34;
     with open(filepath, &#34;w&#34;) as file:
         json.dump(self.as_dict(), file)</code></pre>
