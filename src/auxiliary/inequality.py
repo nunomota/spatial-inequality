@@ -2,24 +2,23 @@ from itertools import combinations
 
 def gini_index(benefit_vector):
     """
-    Calculate the gini index for a benefit distribution
-    with N elements, according to the (latex) definition:
+    Calculate the gini index for a benefit distribution with N elements,
+    according to the (latex) definition:
     
-    \\(
-    \frac{
-        \sum_{j=1}^{N} \sum_{i=1}^{N} \left| y_i - y_j \right|
+    \\[
+    \\frac{
+        \\sum_{j=1}^{N} \\sum_{i=1}^{N} \\left| y_i - y_j \\right|
     }{
-        2 N \sum_{i=1}^{N} y_i
+        2 N \\sum_{i=1}^{N} y_i
     }
-    \\)
+    \\]
 
-    Parameters:
-    benefit_vector (list): List of float values, containing
-        a benefit (or wealth) for multiple parties in a
-        population
+    Args:
+        benefit_vector (list): List of float values, containing a benefit (or
+            wealth) for multiple parties in a population.
         
     Returns:
-    float: Gini index associated with a given benefit vector
+        float: Gini index associated with a given benefit vector.
     """
     assert(isinstance(benefit_vector, list))
     N = len(benefit_vector)
@@ -30,33 +29,30 @@ def gini_index(benefit_vector):
     
 def spatial_index(benefit_vector, get_neighbours):
     """
-    Calculate spatial inequality for a benefit distribution
-    with N elements, according to the (latex) definition:
+    Calculate spatial inequality for a benefit distribution with N elements,
+    according to the (latex) definition:
     
-    \\(
-    \frac{
-        \sum_{i=1}^{N} \frac{1}{N_i} \sum_{j=1}^{N_i} \left| y_i - y_j \right|
+    \\[
+    \\frac{
+        \\sum_{i=1}^{N} \\frac{1}{N_i} \\sum_{j=1}^{N_i} \\left| y_i - y_j \\right|
     }{
-        \sum_{i=1}^{N} y_i
+        \\sum_{i=1}^{N} y_i
     }
-    \\)
+    \\]
 
     As opposed to the Gini Index, this definition only iterates
     over elements that are considered 'neighbours' (and not
     every possible pair).
     
-    Parameters:
-    benefit_vector (list): List of float values, containing
-        a benefit (or wealth) for multiple parties in a
-        population
-    get_neighbours (func): Function that receives a
-        single district's index as a parameter (from
-        0 to N-1) and returns a list of indices of its
-        neighbouring districts (each from 0 to N-1)
+    Args:
+        benefit_vector (list): List of float values, containing a benefit (or
+            wealth) for multiple parties in a population.
+        get_neighbours (func): Function that receives a single district's index
+            as a parameter (from 0 to N-1) and returns a list of indices of its
+            neighbouring districts (each from 0 to N-1).
         
     Returns:
-    float: Spatial inequality associated with a given benefit
-        vector
+        float: Spatial inequality associated with a given benefit vector.
     """
     assert(isinstance(benefit_vector, list) and callable(get_neighbours))
     N = len(benefit_vector)

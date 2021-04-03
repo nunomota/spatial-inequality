@@ -4,18 +4,10 @@ class School:
     necessary properties.
 
     Attributes:
-    __nces_id (str): Standardized NCES ID
-    __total_students (int): Total number of students
-    __total_funding (float): Total funding available
-    __neighbors (set): Set of all neighboring Schools
-
-    Methods:
-    get_id(): Getter method for school's NCES ID.
-    get_total_students(): Getter method for school's total number of students.
-    get_total_funding(): Getter method for school's total funding.
-    get_neighbors(): Getter method for school's neighbors.
-    add_neighbor(): Adds new neighboring school to currently registered
-        neighbors.
+        __nces_id (str): Standardized NCES ID.
+        __total_students (int): Total number of students.
+        __total_funding (float): Total funding available.
+        __neighbors (set): Set of all neighboring Schools.
     """
     __nces_id = None
     __total_sudents = None
@@ -33,7 +25,7 @@ class School:
         Getter method for school's NCES ID.
 
         Returns:
-        str: Standardized NCES ID (should never be nullable)
+            str: Standardized NCES ID (should never be nullable).
         """
         return self.__nces_id
     
@@ -42,7 +34,7 @@ class School:
         Getter method for school's total number of students.
 
         Returns:
-        int: Total number of students (should never be nullable)
+            int: Total number of students (should never be nullable).
         """
         return self.__total_students
     
@@ -51,7 +43,7 @@ class School:
         Getter method for school's total funding.
 
         Returns:
-        float: Total funding available (should never be nullable)
+            float: Total funding available (should never be nullable).
         """
         return self.__total_funding
     
@@ -60,8 +52,8 @@ class School:
         Getter method for school's neighbors.
 
         Returns:
-        set: All NCES IDs for neighboring schools (returns an empty set in case
-            there are none)
+            set: All NCES IDs for neighboring schools (returns an empty set in
+                case there are none).
         """
         return self.__neighbors
         
@@ -69,8 +61,8 @@ class School:
         """
         Adds new neighboring school to currently registered neighbors.
 
-        Parameters:
-        school(School): New neighboring school
+        Args:
+            school(School): New neighboring school.
         """
         self.__neighbors.add(school)
         
@@ -91,7 +83,7 @@ class School:
         neighboring schools are kept).
 
         Returns:
-        School: Shallow copy of School object
+            School: Shallow copy of School object.
         """
         copy = School(self._nces__id, self.__total_sudents, self.__total_funding)
         for neighbor in self.__neighbors:
@@ -105,7 +97,7 @@ class School:
         neighborhood instead).
 
         Returns:
-        School: Deep copy of School object
+            School: Deep copy of School object.
         """
         copy = School(self._nces__id, self.__total_sudents, self.__total_funding)
         for neighbor in self.__neighbors:
@@ -118,20 +110,10 @@ class District:
     necessary properties.
 
     Attributes:
-    __nces_id (str): Standardized NCES ID
-    __total_students (int): Total number of students
-    __total_funding (float): Total funding available
-    __schools (set): Set of all assigned Schools
-
-    Methods:
-    get_id(): Getter method for district's NCES ID.
-    get_total_students(): Getter method for district's total number of students.
-    get_total_funding(): Getter method for district's total funding.
-    get_schools(): Getter method for district's assigned schools.
-    add_school(): Adds a new School to the district and updates district's total
-        students and funding.
-    remove_school(): Removes a School assigned to the district and updates
-        district's total students and funding.
+        __nces_id (str): Standardized NCES ID.
+        __total_students (int): Total number of students.
+        __total_funding (float): Total funding available.
+        __schools (set): Set of all assigned Schools.
     """
     __nces_id = None
     __total_students = None
@@ -149,7 +131,7 @@ class District:
         Getter method for district's NCES ID.
 
         Returns:
-        str: Standardized NCES ID (should never be nullable)
+            str: Standardized NCES ID (should never be nullable).
         """
         return self.__nces_id
     
@@ -158,7 +140,7 @@ class District:
         Getter method for district's total number of students.
 
         Returns:
-        int: Total number of students (should never be nullable)
+            int: Total number of students (should never be nullable).
         """
         return self.__total_students
     
@@ -167,7 +149,7 @@ class District:
         Getter method for district's total funding.
 
         Returns:
-        float: Total funding available (should never be nullable)
+            float: Total funding available (should never be nullable).
         """
         return self.__total_funding
     
@@ -176,7 +158,7 @@ class District:
         Getter method for all Schools in the district.
 
         Returns:
-        set: Set of unique School objects assigned to the district
+            set: Set of unique School objects assigned to the district.
         """
         return self.__schools
     
@@ -185,8 +167,8 @@ class District:
         Adds a new School to the district and updates district's total students
         and funding.
 
-        Parameters:
-        school (School): New school to add
+        Args:
+            school (School): New school to add.
         """
         # TODO avoid error propagation
         self.__total_students += school.get_total_students()
@@ -198,8 +180,8 @@ class District:
         Removes a School assigned to the district and updates district's total
         students and funding.
 
-        Parameters:
-        school (School): Old school to remove
+        Args:
+            school (School): Old school to remove.
         """
         # TODO avoid error propagation
         self.__total_students -= school.get_total_students()
@@ -223,7 +205,7 @@ class District:
         assigned schools are kept).
 
         Returns:
-        District: Shallow copy of District object
+            District: Shallow copy of District object.
         """
         copy = District(self.__nces_id)
         for school in self.__schools:
@@ -237,7 +219,7 @@ class District:
         district instead).
 
         Returns:
-        District: Deep copy of District object
+            District: Deep copy of District object.
         """
         copy = District(self.__nces_id)
         for school in self.__schools:

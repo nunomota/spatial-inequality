@@ -34,23 +34,23 @@ def greedily_pick_redistricting_moves(district, lookup, min_schools_per_district
     overall iteration process proceeds. Otherwise, the move is reverted before
     proceeding.
 
-    Parameters:
-    district (optimization.entity_nodes.District): Target District to redistrict
-        schools from
-    lookup (optimization.lookup.Lookup): Lookup instance for fast information
-        querying
-    min_schools_per_district (int): Minimum number of schools to preserve in
-        each district, upon redistricting. A number equal to (or lesser than)
-        zero will allow districts to merge
-    max_schools_per_district (int): Maximum number of schools to be preserved in
-        each district, upon redistricting
+    Args:
+        district (optimization.entity_nodes.District): Target District to redistrict
+            schools from.
+        lookup (optimization.lookup.Lookup): Lookup instance for fast information
+            querying.
+        min_schools_per_district (int): Minimum number of schools to preserve in
+            each district, upon redistricting. A number equal to (or lesser than)
+            zero will allow districts to merge.
+        max_schools_per_district (int): Maximum number of schools to be preserved in
+            each district, upon redistricting.
 
     Returns:
-    list of tuple: List of all greedy School redistricting moves that would
-        reduce the selected District neighborhood's inequality (i.e., tuples
-        comprised of a redistricted school's standardized NCES ID, its source
-        district's standardized NCES ID and its destination district's
-        standardized NCES ID)
+        list of tuple: List of all greedy School redistricting moves that would
+            reduce the selected District neighborhood's inequality (i.e., tuples
+            comprised of a redistricted school's standardized NCES ID, its source
+            district's standardized NCES ID and its destination district's
+            standardized NCES ID).
     """
     # Auxiliary functions to make/revert virtual moves
     def make_move(school, from_district, to_district):
@@ -131,11 +131,11 @@ def apply_redistricting_moves(moves, lookup, heap):
     exception. In this case, it's safe to skip this step as it will not
     interfere with the heap's order.
 
-    Parameters:
-    moves (list of tuple): Greedy moves to apply
-    lookup (optimization.lookup.Lookup): Lookup instance for fast information
-        querying
-    heap (otimization.lazy_heap.LazyHeap): LazyHeap of districts to update
+    Args:
+        moves (list of tuple): Greedy moves to apply.
+        lookup (optimization.lookup.Lookup): Lookup instance for fast
+            information querying.
+        heap (otimization.lazy_heap.LazyHeap): LazyHeap of districts to update.
     """
     for move in moves:
         # Get all necessary instances
@@ -161,22 +161,22 @@ def calculate_inequality(districts, lookup):
     Calculate spatial inequality based on a school/district assignment and
     defined districts' neighborhoods, following the (latex) definition:
 
-    \\(
-    \frac{
-        \sum_{j=1}^{N} \sum_{i=1}^{N} \left| y_i - y_j \right|
+    \\[
+    \\frac{
+        \\sum_{j=1}^{N} \\sum_{i=1}^{N} \\left| y_i - y_j \\right|
     }{
-        2 N \sum_{i=1}^{N} y_i
+        2 N \\sum_{i=1}^{N} y_i
     }
-    \\)
+    \\]
 
-    Parameters:
-    districts (list of optimization.entity_nodes.District): List of all
-        District instances
-    lookup (optimization.lookup.Lookup): Lookup instance for fast information
-        querying
+    Args:
+        districts (list of optimization.entity_nodes.District): List of all
+            District instances.
+        lookup (optimization.lookup.Lookup): Lookup instance for fast
+            information querying.
 
     Returns:
-    float: Spatial inequality for a school/district assignment
+        float: Spatial inequality for a school/district assignment.
     """
     get_per_student_funding = lambda district: district.get_total_funding() / district.get_total_students()
     abs_funding_diff = lambda x,y: abs(get_per_student_funding(x) - get_per_student_funding(y))
@@ -195,14 +195,14 @@ def calculate_inequality(districts, lookup):
 
 def refill_heap(heap, holdout_queue):
     """
-    Refills optimization.lazy_heap.LazyHeap with any Districts successfully
-    dequeued from optimization.holdout.HoldoutQueue.
+    Refills `optimization.lazy_heap.LazyHeap` with any Districts successfully
+    dequeued from `optimization.holdout.HoldoutQueue`.
 
-    Parameters:
-    heap (optimization.lazy_heap.LazyHeap): LazyHeap instance to refill using
-        Districts from the holdout queue
-    holdout_queue (optimization.holdout.HoldoutQueue): HoldoutQueue instance
-        containing all districts previously exhausted greedy moves
+    Args:
+        heap (optimization.lazy_heap.LazyHeap): LazyHeap instance to refill
+            using Districts from the holdout queue.
+        holdout_queue (optimization.holdout.HoldoutQueue): HoldoutQueue instance
+            containing all districts previously exhausted greedy moves.
     """
     # Pop all elements from holdout queue
     is_running = True
@@ -226,40 +226,42 @@ def greedy_algo(target_state, aug_school_info, school_assignment, min_schools_pe
     assignment - for a specific state - and attempts to minimize its spatial
     inequality by redistricting schools.
 
-    Parameters:
-    target_state (str): Capitalized full state name (e.g., 'Alabama')
-    aug_school_info (pandas.DataFrame): Target augmented school information (as
-        formatted by auxiliary.data_handler.DataHandler)
-    school_assignment (pandas.DataFrame): Target school assignment (as formatted
-        by auxiliary.data_handler.DataHandler)
-    min_schools_per_district (int): Minimum number of schools to preserve in
-        each district, upon redistricting. A number equal to (or lesser than)
-        zero will allow districts to merge
-    max_schools_per_district (int): Maximum number of schools to be preserved in
-        each district, upon redistricting
-    early_stopper_it (int): Number of allowed iterations without improvement
-        for early stopping
-    early_stopper_tol (float): Tolerance for floating point inequality
-        improvement measurement
-    callbacks (dict of str: function): Dictionary of (optional) callback
-        functions that will be called - by key - at specific stages of the
-        algorithm's execution. 'on_init' will be called once, right after
-        variables' initialization and before any computation takes place.
-        'on_update' will be called at the beginning of every iteration of the
-        algorithm. 'on_end' will be called once, right before the algorithm
-        terminates its execution and after all computations are done. 'on_move'
-        will be called whenever greedy school redistricting moves are made,
-        right after they are applied. Each callback will then be passed
-        corresponding arguments, regarding the status of execution. More
-        specifically, 'on_init', 'on_update', and 'on_end' will have access to
-        (i) the list of all optimization.entity_nodes.School instances, (ii) 
-        the list of all optimization.entity_nodes.District instances, and (iii)
-        an updated optimization.lookup.Lookup instance. On the other hand,
-        'on_move' will only be passed (i) the current iteration's index, and
-        (ii) the list of all moves that were performed.
+    Args:
+        target_state (str): Capitalized full state name (e.g., 'Alabama').
+        aug_school_info (pandas.DataFrame): Target augmented school information
+            (as formatted by `auxiliary.data_handler.DataHandler`).
+        school_assignment (pandas.DataFrame): Target school assignment (as
+            formatted by `auxiliary.data_handler.DataHandler`).
+        min_schools_per_district (int): Minimum number of schools to preserve in
+            each district, upon redistricting. A number equal to (or lesser
+            than) zero will allow districts to merge.
+        max_schools_per_district (int): Maximum number of schools to be
+            preserved in each district, upon redistricting.
+        early_stopper_it (int): Number of allowed iterations without improvement
+            for early stopping.
+        early_stopper_tol (float): Tolerance for floating point inequality
+            improvement measurement.
+        callbacks (dict): Dictionary of (optional) callback functions that will
+            be called - by key - at specific stages of the algorithm's
+            execution. 'on_init' will be called once, right after variables'
+            initialization and before any computation takes place. 'on_update'
+            will be called at the beginning of every iteration of the algorithm.
+            'on_end' will be called once, right before the algorithm terminates
+            its execution and after all computations are done. 'on_move' will be
+            called whenever greedy school redistricting moves are made, right
+            after they are applied. Each callback will then be passed
+            corresponding arguments, regarding the status of execution. More
+            specifically, 'on_init', 'on_update', and 'on_end' will have access
+            to (i) the list of all `optimization.entity_nodes.School` instances,
+            (ii) the list of all `optimization.entity_nodes.District` instances,
+            and (iii) an updated `optimization.lookup.Lookup` instance. On the
+            other hand, 'on_move' will only be passed (i) the current
+            iteration's index, and (ii) the list of all moves that were
+            performed.
 
     Returns:
-    float: Minimal spatial inequality index achieved for the specified state
+        float: Minimal spatial inequality index achieved for the specified
+            state.
     """
     # Instantiate all schools
     school_ids_in_state = get_schools_in_state(target_state, school_assignment)
@@ -452,33 +454,34 @@ def get_expectable_run_for_state(target_state, aug_school_info, school_assignmen
     NOTE: Parallelizing iterations over the same state would be possible to
     speedup this benchmarking process.
 
-    Parameters:
-    target_state (str): Capitalized full state name (e.g., 'Alabama')
-    aug_school_info (pandas.DataFrame): Target augmented school information (as
-        formatted by auxiliary.data_handler.DataHandler)
-    school_assignment (pandas.DataFrame): Target school assignment (as formatted
-        by auxiliary.data_handler.DataHandler)
-    n_runs (int): Number of runs to perform for the greedy partitioning
-        algorithm
-    greedy_params (kwargs): Keyword arguments for the greedy partitioning
-        algorithm's parameterization. Two values can be specified through this
-        parameter, namely (i) 'min_schools_per_district' and (ii)
-        'max_schools_per_district'. These respectively refer to the minimum and
-        maximum number of schools to preserve in each district, upon
-        redistricting.
-    early_stopper_params (kwargs): Keyword arguments for the early stopper's
-        parameterization. Two values can be specified through this
-        parameter, namely (i) 'early_stopper_it' and (ii) 'early_stopper_tol'.
-        These respectively refer to the number of maximum iterations allowed
-        without noticeable improvements to inequality and the tolerance for
-        floating point comparisons on inequality
+    Args:
+        target_state (str): Capitalized full state name (e.g., 'Alabama').
+        aug_school_info (pandas.DataFrame): Target augmented school information
+            (as formatted by `auxiliary.data_handler.DataHandler`).
+        school_assignment (pandas.DataFrame): Target school assignment (as
+            formatted by `auxiliary.data_handler.DataHandler`).
+        n_runs (int): Number of runs to perform for the greedy partitioning
+            algorithm.
+        greedy_params (kwargs): Keyword arguments for the greedy partitioning
+            algorithm's parameterization. Two values can be specified through
+            this parameter, namely (i) 'min_schools_per_district' and (ii)
+            'max_schools_per_district'. These respectively refer to the minimum
+            and maximum number of schools to preserve in each district, upon
+            redistricting.
+        early_stopper_params (kwargs): Keyword arguments for the early stopper's
+            parameterization. Two values can be specified through this
+            parameter, namely (i) 'early_stopper_it' and (ii)
+            'early_stopper_tol'. These respectively refer to the number of
+            maximum iterations allowed without noticeable improvements to
+            inequality and the tolerance for floating point comparisons on
+            inequality.
 
     Returns:
-    tuple: Triplet containing (i) the spatial inequality index's standard
-        deviation, (ii) the spatial inequality index's mean, and (iii) a
-        optimization.run_metrics.RunMetrics instance with all information on the
-        algorithm's average run (i.e., the run whose spatial inequality index
-        came closest to the average)
+        tuple: Triplet containing (i) the spatial inequality index's standard
+            deviation, (ii) the spatial inequality index's mean, and (iii) an
+            `optimization.run_metrics.RunMetrics` instance with all information
+            on the algorithm's average run (i.e., the run whose spatial
+            inequality index came closest to the average).
     """
     # Initialize container variables
     inequalities = []

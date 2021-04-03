@@ -7,15 +7,10 @@ class _LazyHeapNode:
     Wrapper class for any item to be added onto the LazyHeap.
 
     Attributes:
-    __lt (function): 'Less than' function to compare _LazyHeapNode instances
-    __data (Object): Stored item
-    __is_deleted (bool): Boolean flag to mark node for deletion
-
-    Methods:
-    get_data(): Getter method for the stored (unmodified) item.
-    delete(freeze_mode="shallow"): Marks node for (lazy) deletion and freezes
-        its current state by making a copy of its data.
-    is_deleted(): Checks if a node is marked for (lazy) deletion.
+        __lt (function): 'Less than' function to compare _LazyHeapNode
+            instances.
+        __data (Object): Stored item.
+        __is_deleted (bool): Boolean flag to mark node for deletion.
     """
     __lt = None
     __data = None
@@ -31,7 +26,7 @@ class _LazyHeapNode:
         Getter method for the stored (unmodified) item.
 
         Returns:
-        Object: Unmodified stored item
+            Object: Unmodified stored item.
         """
         return self.__data
     
@@ -40,11 +35,11 @@ class _LazyHeapNode:
         Marks node for (lazy) deletion and freezes its current state by making a
         copy of its data.
 
-        Parameters:
-        freeze_mode (str): Should be "shallow", "deep" or None
+        Args:
+            freeze_mode (str): Should be "shallow", "deep" or None.
 
         Raises:
-        AttributeError: Whenever an invalid freeze mode is specified
+            AttributeError: Whenever an invalid freeze mode is specified.
         """
         # Freeze object reference
         if freeze_mode == "shallow":
@@ -63,7 +58,7 @@ class _LazyHeapNode:
         Checks if a node is marked for (lazy) deletion.
 
         Returns:
-        bool: 'true' if node is marked for deletion, 'false' otherwise
+            bool: 'true' if node is marked for deletion, 'false' otherwise
         """
         return self.__is_deleted
     
@@ -71,11 +66,11 @@ class _LazyHeapNode:
         """
         Checks whether node is 'less than' another node.
 
-        Parameters:
-        other (_LazyHeapNode): Node to compare against
+        Args:
+            other (_LazyHeapNode): Node to compare against.
 
         Returns:
-        bool: 'true' if node is lesser than its peer, 'false' otherwise
+            bool: 'true' if node is lesser than its peer, 'false' otherwise.
         """
         return self.__lt(self.get_data(), other.get_data())
     
@@ -102,46 +97,37 @@ class LazyHeap:
     allowed before the whole tree is pruned of deleted nodes and rebuilt.
 
     Attributes:
-    __data (list): Heapified list of all items
-    __item_id (function): Function to extract a unique ID from an item
-    __gt (function): 'Greater than' function to compare items in the heap
-    __lazy_eval_map (dict): Mapping from a unique ID to all (non-deleted)
-        _LazyHeapNode instances
-    __max_elems (int): Maximum number of elements allowed in the heap
-
-    Methods:
-    push(item): Wraps a new item with _LazyHeapNode and adds it to the max heap.
-    pop(): Retrieves the first non-deleted _LazyHeapNode from the max heap.
-    update(item): Updates an item that already exists in the heap, by marking
-        its previous instance as deleted and then pushing a new one onto the
-        heap.
-    __prune_heap(): Removes all lazily deleted nodes from the heap and heapifies
-        the remaining ones.
+        __data (list): Heapified list of all items.
+        __item_id (function): Function to extract a unique ID from an item.
+        __gt (function): 'Greater than' function to compare items in the heap.
+        __lazy_eval_map (dict): Mapping from a unique ID to all (non-deleted)
+            _LazyHeapNode instances.
+        __max_elems (int): Maximum number of elements allowed in the heap.
 
     Example:
-    >>> class SoccerPlayer:
-    ...     def __init__(self, name, goals):
-    ...         self.name = name
-    ...         self.goals = goals
-    ...
-    >>> # Create three distinct players
-    >>> players = [
-    ...     SoccerPlayer("A", 10),
-    ...     SoccerPlayer("B", 7),
-    ...     SoccerPlayer("C", 5)]
-    >>> # Initialize max heap with all players
-    >>> max_heap = LazyHeap(
-    ...     item_id=lambda x: x.name,
-    ...     gt=lambda x,y: x.goals > y.goals)
-    >>> for player in players:
-    ...     heap.push(player)
-    >>> print(heap.pop().name)
-    'A'
-    >>> # Update heap entries
-    >>> players[2].goals = 9
-    >>> heap.update(players[2])
-    >>> print(heap.pop().name)
-    'C'
+        >>> class SoccerPlayer:
+        ...     def __init__(self, name, goals):
+        ...         self.name = name
+        ...         self.goals = goals
+        ...
+        >>> # Create three distinct players
+        >>> players = [
+        ...     SoccerPlayer("A", 10),
+        ...     SoccerPlayer("B", 7),
+        ...     SoccerPlayer("C", 5)]
+        >>> # Initialize max heap with all players
+        >>> max_heap = LazyHeap(
+        ...     item_id=lambda x: x.name,
+        ...     gt=lambda x,y: x.goals > y.goals)
+        >>> for player in players:
+        ...     heap.push(player)
+        >>> print(heap.pop().name)
+        'A'
+        >>> # Update heap entries
+        >>> players[2].goals = 9
+        >>> heap.update(players[2])
+        >>> print(heap.pop().name)
+        'C'
     """
     __data = None
     __item_id = None
@@ -163,12 +149,12 @@ class LazyHeap:
         """
         Wraps a new item with _LazyHeapNode and adds it to the max heap.
 
-        Parameters:
-        item (Object): Item to be added
+        Args:
+            item (Object): Item to be added.
 
         Raises:
-        IndexError: Whenever the maximum number of nodes allowed in the heap has
-            been reached
+            IndexError: Whenever the maximum number of nodes allowed in the heap
+                has been reached.
         """
         new_node = _LazyHeapNode(item, self.__gt)
         # Check if heap size has not exceeded its maximum
@@ -186,8 +172,8 @@ class LazyHeap:
         Retrieves the first non-deleted _LazyHeapNode from the max heap.
 
         Returns:
-        _LazyHeapNode: First non-deleted item in the max heap, or None if heap
-            is empty
+            _LazyHeapNode: First non-deleted item in the max heap, or None if
+                heap is empty.
         """
         # Lazy evaluation of max heap
         while True:
@@ -207,8 +193,8 @@ class LazyHeap:
         identify both the updated instance of the item and its previously
         existing one.
 
-        Parameters:
-        item (Object): Item to update
+        Args:
+            item (Object): Item to update.
         """
         # Lazy delete of pre-existing item
         self.__lazy_eval_map[self.__item_id(item)].delete()

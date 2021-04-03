@@ -7,12 +7,8 @@ class _HoldoutQueueItemWrapper:
     tag.
 
     Attributes:
-    __item (Object): Stored item
-    __tag (Object): Stored tag
-
-    Methods:
-    get_data(): Getter method for the stored (unmodified) item.
-    get_tag(): Getter method for the stored item's tag.
+        __item (Object): Stored item.
+        __tag (Object): Stored tag.
     """
     __item = None
     __tag = None
@@ -26,7 +22,7 @@ class _HoldoutQueueItemWrapper:
         Getter method for the stored (unmodified) item.
 
         Returns:
-        Object: Unmodified stored item
+            Object: Unmodified stored item.
         """
         return self.__item
     
@@ -35,7 +31,7 @@ class _HoldoutQueueItemWrapper:
         Getter method for the stored item's tag.
 
         Returns:
-        Object: Unmodified stored tag
+            Object: Unmodified stored tag.
         """
         return self.__tag
         
@@ -56,31 +52,21 @@ class HoldoutQueue:
     this class can be 'recycled', swapping the primary and leftover queues.
 
     Attributes:
-    __primary_queue (Queue): Underlying primary queue
-    __leftover_queue (Queue): Unerlying leftover queue
-    __get_item_tag (function): Function to calculate an item's tag
-    __is_valid (function): Function to validate an item (based on its tag)
-
-    Methods:
-    recycle(): Recycles the holdout queue, swapping the primary and leftover
-        queues.
-    enqueue(item): Wraps a new item with _HoldoutQueueItemWrapper and adds it at
-        the end of the holdout queue.
-    dequeue(item): Retrieves the first valid _HoldoutQueueItemWrapper from the
-        beginning of the holdout queue.
-    get_primary_queue(): Getter method for the holdout queue's primary queue.
-    __is_empty(): Checks whether the primary queue is empty.
+        __primary_queue (Queue): Underlying primary queue.
+        __leftover_queue (Queue): Unerlying leftover queue.
+        __get_item_tag (function): Function to calculate an item's tag.
+        __is_valid (function): Function to validate an item (based on its tag).
 
     Example:
-    >>> def is_even(n):
-    ...     return n%2 == 0
-    >>> holdout_queue = HoldoutQueue(is_valid=is_even)
-    >>> for i in range(5):
-    ...     holdout_queue.enqueue(i)
-    >>> print(holdout_queue.dequeue())
-    2
-    >>> print(holdout_queue.dequeue())
-    4
+        >>> def is_even(n):
+        ...     return n%2 == 0
+        >>> holdout_queue = HoldoutQueue(is_valid=is_even)
+        >>> for i in range(5):
+        ...     holdout_queue.enqueue(i)
+        >>> print(holdout_queue.dequeue())
+        2
+        >>> print(holdout_queue.dequeue())
+        4
     """
     __primary_queue = None
     __leftover_queue = None
@@ -104,8 +90,8 @@ class HoldoutQueue:
         Wraps a new item with _HoldoutQueueItemWrapper and adds it at the end of
         the holdout queue.
 
-        Parameters:
-        item (Object): Item to be added
+        Args:
+            item (Object): Item to be added.
         """
         item_wrapper = _HoldoutQueueItemWrapper(
             item,
@@ -118,7 +104,7 @@ class HoldoutQueue:
         Getter method for the holdout queue's primary queue.
 
         Returns:
-        Queue: Primary queue
+            Queue: Primary queue.
         """
         return self.__primary_queue
         
@@ -128,8 +114,8 @@ class HoldoutQueue:
         the holdout queue.
 
         Returns:
-        Object: First valid item from the primary queue, or None if primary
-            queue is empty
+            Object: First valid item from the primary queue, or None if primary
+                queue is empty.
         """
         while True:
             if self.__is_empty():
@@ -144,6 +130,6 @@ class HoldoutQueue:
         Checks whether the primary queue is empty.
 
         Returns:
-        bool: 'true' if primary queue is empty, 'false' otherwise
+            bool: 'true' if primary queue is empty, 'false' otherwise.
         """
         return self.__primary_queue.empty()

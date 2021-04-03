@@ -19,15 +19,14 @@ def get_schools_in_state(state_name, school_assignment):
     """
     Gets all schools currently assigned to a state. 
   
-    Parameters: 
-    state_name (str): Full name of target state (e.g. 'Alabama')
-    school_assignment (pandas.DataFrame): Target school
-        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        state_name (str): Full name of target state (e.g. 'Alabama').
+        school_assignment (pandas.DataFrame): Target school assignment (as
+            formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    list: All NCES IDs for corresponding schools (returns an empty
-        list in case there are none)
-        
+    Returns:
+        list: All NCES IDs for corresponding schools (returns an empty
+            list in case there are none).
     """
     return list(school_assignment[school_assignment["state_name"] == state_name.title()].index.unique().tolist())
 
@@ -35,15 +34,14 @@ def get_districts_in_state(state_name, school_assignment):
     """
     Gets all districts currently assigned to a state. 
   
-    Parameters: 
-    state_name (str): Full name of target state (e.g. 'Alabama')
-    school_assignment (pandas.DataFrame): Target school
-        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        state_name (str): Full name of target state (e.g. 'Alabama').
+        school_assignment (pandas.DataFrame): Target school assignment (as
+            formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    list: All NCES IDs for corresponding districts (returns an empty
-        list in case there are none)
-        
+    Returns:
+        list: All NCES IDs for corresponding districts (returns an empty
+            list in case there are none).
     """
     return list(school_assignment[school_assignment["state_name"] == state_name.title()]["district_id"].unique().tolist())
 
@@ -51,15 +49,14 @@ def get_schools_in_district(district_id, school_assignment):
     """
     Gets all schools currently assigned to a district. 
   
-    Parameters: 
-    district_id (str): NCES ID of target district (e.g. '0100005')
-    school_assignment (pandas.DataFrame): Target school
-        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        district_id (str): NCES ID of target district (e.g. '0100005').
+        school_assignment (pandas.DataFrame): Target school assignment (as
+            formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    list: All NCES IDs for corresponding schools (returns an empty
-        list in case there are none)
-  
+    Returns:
+        list: All NCES IDs for corresponding schools (returns an empty list in
+            case there are none).
     """
     return list(school_assignment[school_assignment["district_id"] == district_id].index.unique().tolist())
 
@@ -68,15 +65,14 @@ def get_neighbouring_schools(school_id, school_info):
     Gets all schools currently in the neighbourhood of a school
     (not including the school itself). 
   
-    Parameters: 
-    school_id (str): NCES ID of target school (e.g. '010000500889')
-    school_info (pandas.DataFrame): Target school information
-        (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        school_id (str): NCES ID of target school (e.g. '010000500889').
+        school_info (pandas.DataFrame): Target school information (as formatted
+        by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    list: All NCES IDs for corresponding schools (returns an empty
-        list in case there are none)
-  
+    Returns:
+        list: All NCES IDs for corresponding schools (returns an empty list in
+            case there are none).
     """
     parse_neighbours = lambda x: x.split(",") if len(x) > 0 else []
     try:
@@ -91,17 +87,16 @@ def get_neighbouring_districts(district_id, school_info, school_assignment):
     Gets all districts currently in the neighbourhood of a district
     (not including the district itself). 
   
-    Parameters: 
-    district_id (str): NCES ID of target district (e.g. '0100005')
-    school_info (pandas.DataFrame): Target school information
-        (as formatted by auxiliary.data_handler.DataHandler)
-    school_assignment (pandas.DataFrame): Target school
-        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        district_id (str): NCES ID of target district (e.g. '0100005').
+        school_info (pandas.DataFrame): Target school information (as formatted
+            by `auxiliary.data_handler.DataHandler`).
+        school_assignment (pandas.DataFrame): Target school assignment (as
+            formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    list: All NCES IDs for corresponding districts (returns an empty
-        list in case there are none)
-  
+    Returns:
+        list: All NCES IDs for corresponding districts (returns an empty list in
+            case there are none).
     """
     flatten = lambda l: [item for sublist in l for item in sublist]
     schools_in_district = get_schools_in_district(district_id, school_assignment)
@@ -118,14 +113,13 @@ def get_school_total_funding(school_id, aug_school_info):
     """
     Gets (total) funding associated with a school.
   
-    Parameters: 
-    district_id (str): NCES ID of target school (e.g. '010000500889')
-    aug_school_info (pandas.DataFrame): Target augmented school information
-        (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        district_id (str): NCES ID of target school (e.g. '010000500889').
+        aug_school_info (pandas.DataFrame): Target augmented school information
+            (as formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    float: Single number comprising school-level data
-  
+    Returns:
+        float: Single number comprising school-level data.
     """
     return float(aug_school_info.loc[school_id]["adjusted_total_revenue_per_student"] * aug_school_info.loc[school_id]["total_students"])
 
@@ -134,16 +128,15 @@ def get_district_total_funding(district_id, aug_school_info, school_assignment):
     Gets (total) funding associated with a district, based on
     provided school district assignment.
   
-    Parameters: 
-    district_id (str): NCES ID of target district (e.g. '0100005')
-    aug_school_info (pandas.DataFrame): Target augmented school information
-        (as formatted by auxiliary.data_handler.DataHandler)
-    school_assignment (pandas.DataFrame): Target school
-        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        district_id (str): NCES ID of target district (e.g. '0100005').
+        aug_school_info (pandas.DataFrame): Target augmented school information
+            (as formatted by `auxiliary.data_handler.DataHandler`).
+        school_assignment (pandas.DataFrame): Target school
+            assignment (as formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    float: Single number comprising district-level data
-  
+    Returns:
+        float: Single number comprising district-level data.
     """
     schools_in_district = get_schools_in_district(district_id, school_assignment)
     district_school_info = aug_school_info[aug_school_info.index.isin(schools_in_district)]
@@ -153,14 +146,13 @@ def get_school_total_students(school_id, aug_school_info):
     """
     Gets total number of students associated with a school.
   
-    Parameters: 
-    district_id (str): NCES ID of target district (e.g. '0100005')
-    aug_school_info (pandas.DataFrame): Target augmented school information
-        (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        district_id (str): NCES ID of target district (e.g. '0100005').
+        aug_school_info (pandas.DataFrame): Target augmented school information
+            (as formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    int: Single number comprising school-level data
-  
+    Returns:
+        int: Single number comprising school-level data.
     """
     return int(aug_school_info.loc[school_id]["total_students"])
 
@@ -169,16 +161,15 @@ def get_district_total_students(district_id, aug_school_info, school_assignment)
     Gets total number of students associated with a district, based on
     provided school district assignment.
   
-    Parameters: 
-    district_id (str): NCES ID of target district (e.g. '0100005')
-    aug_school_info (pandas.DataFrame): Target augmented school information
-        (as formatted by auxiliary.data_handler.DataHandler)
-    school_assignment (pandas.DataFrame): Target school
-        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        district_id (str): NCES ID of target district (e.g. '0100005').
+        aug_school_info (pandas.DataFrame): Target augmented school information
+            (as formatted by `auxiliary.data_handler.DataHandler`).
+        school_assignment (pandas.DataFrame): Target school assignment (as
+            formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    int: Single number comprising district-level data
-  
+    Returns:
+        int: Single number comprising district-level data.
     """
     schools_in_district = get_schools_in_district(district_id, school_assignment)
     district_school_info = aug_school_info[aug_school_info.index.isin(schools_in_district)]
@@ -189,16 +180,15 @@ def get_per_student_funding(district_id, aug_school_info, school_assignment):
     Gets per-student (total) funding associated with a district, based on
     provided school district assignment.
   
-    Parameters: 
-    district_id (str): NCES ID of target district (e.g. '0100005')
-    aug_school_info (pandas.DataFrame): Target augmented school information
-        (as formatted by auxiliary.data_handler.DataHandler)
-    school_assignment (pandas.DataFrame): Target school
-        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        district_id (str): NCES ID of target district (e.g. '0100005').
+        aug_school_info (pandas.DataFrame): Target augmented school information
+            (as formatted by `auxiliary.data_handler.DataHandler`).
+        school_assignment (pandas.DataFrame): Target school assignment (as
+            formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    float: Single number comprising district-level data
-  
+    Returns:
+        float: Single number comprising district-level data.
     """
     total_funding = get_district_total_funding(district_id, aug_school_info, school_assignment)
     total_students = get_district_total_students(district_id, aug_school_info, school_assignment)
@@ -218,18 +208,17 @@ def get_possible_school_transitions(district_id, school_info, school_assignment)
     one school to another district, we isolate another school from the
     district where it originated from. These cases may need to be handled.
   
-    Parameters: 
-    district_id (str): NCES ID of target district (e.g. '0100005')
-    school_info (pandas.DataFrame): Target school information
-        (as formatted by auxiliary.data_handler.DataHandler)
-    school_assignment (pandas.DataFrame): Target school
-        assignment (as formatted by auxiliary.data_handler.DataHandler)
+    Args:
+        district_id (str): NCES ID of target district (e.g. '0100005').
+        school_info (pandas.DataFrame): Target school information (as formatted
+            by `auxiliary.data_handler.DataHandler`).
+        school_assignment (pandas.DataFrame): Target school assignment (as
+        formatted by `auxiliary.data_handler.DataHandler`).
     
-    Returns: 
-    list: List of triplets containing (i) the ID of a school to be
-        transitioned, (ii) the ID of the provenance district, and
-        (iii) the ID of th destination district
-  
+    Returns:
+        list: List of triplets containing (i) the ID of a school to be
+            transitioned, (ii) the ID of the provenance district, and (iii) the
+            ID of th destination district.
     """
     school_transitions = []
     schools_in_district = get_schools_in_district(district_id, school_assignment)

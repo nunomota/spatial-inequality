@@ -6,13 +6,13 @@ def fix_ncesid(ncesid, mode):
     Applies standard formatting (zero padding and typecasting) to
     both schools' and districts' NCES IDs.
   
-    Parameters: 
-    ncesid (int): Target NCES ID to fix (e.g. 100005)
-    mode (str): Should be either "school" or "district"
+    Args:
+        ncesid (int): Target NCES ID to fix (e.g. 100005).
+        mode (str): Should be either "school" or "district".
     
-    Returns: 
-    str: Standardized NCES ID (does not perform zero padding if
-        unknown mode is porvided)
+    Returns:
+        str: Standardized NCES ID (does not perform zero padding if
+            unknown mode is porvided).
     """
     padding = {
         "school": 12,
@@ -24,15 +24,15 @@ def remove_cross_state_neighbors(aug_school_info, school_assignment):
     """
     Removes any neighbouring edge between schools in different states.
   
-    Parameters: 
-    aug_school_info (pandas.DataFrame): Target school information (containing 
-        neighbouring edges)
-    school_assignment (pandas.DataFrame): Target school assignment (containing
-        state assignment)
+    Args:
+        aug_school_info (pandas.DataFrame): Target school information
+            (containing neighbouring edges).
+        school_assignment (pandas.DataFrame): Target school assignment
+            (containing state assignment).
     
-    Returns: 
-    pandas.DataFrame: Refined school information (with cross-state neighbours
-        removed)
+    Returns:
+        pandas.DataFrame: Refined school information (with cross-state
+            neighbours removed).
     """
     aug_school_info = aug_school_info.copy()
 
@@ -63,15 +63,15 @@ def remove_invalid_entries(aug_school_info, school_assignment):
     Removes any school entries which do not contain information regarding their
     total funding and/or number students. 
   
-    Parameters: 
-    aug_school_info (pandas.DataFrame): Target school information (containing 
-        funding and students)
-    school_assignment (pandas.DataFrame): Target school assignment (containing
-        district and state assignments)
+    Args:
+        aug_school_info (pandas.DataFrame): Target school information
+            (containing funding and students).
+        school_assignment (pandas.DataFrame): Target school assignment
+            (containing district and state assignments).
     
-    Returns: 
-    tuple: Refined school information (pandas.DataFrame) and school assignment
-        (pandas.DataFrame)
+    Returns:
+        tuple: Refined school information (`pandas.DataFrame`) and school
+            assignment (`pandas.DataFrame`).
     """
     aug_school_info = aug_school_info.copy()
     school_assignment = school_assignment.copy()
@@ -109,9 +109,9 @@ def load_data():
     """
     Loads all necessary data regarding school information and school assignment. 
   
-    Returns: 
-    tuple: School information (pandas.DataFrame) and school assignment
-        (pandas.DataFrame)
+    Returns:
+        tuple: School information (`pandas.DataFrame`) and school assignment
+            (`pandas.DataFrame`).
     """
     dh = DataHandler()
     aug_school_info = dh.get_augmented_school_info()
@@ -126,20 +126,7 @@ class DataHandler:
     Class to handle initial data parsing, reading and formatting.
 
     Attributes:
-    __data_path (str): Root directory from which to read data files
-
-    Methods:
-    __read_file(filename, compression="gzip", encoding="utf-8"): Read raw CSV
-        data file, located inside DataHandler.__data_path.
-    __format_cols(df, type_dict): Formats all columns' values of a DataFrame
-        with their desired variable type.
-    get_school_info(): Read school information from a CSV file into a DataFrame.
-    get_district_info(): Read district information from a CSV file into a
-        DataFrame.
-    get_school_assignment(): Read initial school assignment from a CSV file into
-        a DataFrame.
-    get_augmented_school_info(): Augments school information to also include
-        estimated 'per-student revenue', alongside all other school attributes.
+        __data_path (str): Root directory from which to read data files.
     """
     __data_path = None
     
@@ -148,15 +135,15 @@ class DataHandler:
         
     def __read_file(self, filename, compression="gzip", encoding="utf-8"):
         """
-        Read raw CSV data file, located inside DataHandler.__data_path.
+        Read raw CSV data file, located inside `DataHandler.__data_path`.
       
-        Parameters: 
-        filename (str): Name of file to read (w/ extension)
-        compression (str): Compression algorithm used in the CSV file
-        encoding (str): Character encoding used in the CSV file
+        Args:
+            filename (str): Name of file to read (w/ extension).
+            compression (str): Compression algorithm used in the CSV file.
+            encoding (str): Character encoding used in the CSV file.
         
-        Returns: 
-        pandas.DataFrame: Resulting DataFrame
+        Returns:
+            pandas.DataFrame: Resulting DataFrame.
         """
         return pd.read_csv(
             f"{self.__data_path}/{filename}",
@@ -169,13 +156,13 @@ class DataHandler:
         Formats all columns' values of a DataFrame with their desired
         variable type.
       
-        Parameters: 
-        df (pandas.DataFrame): Target DataFrame
-        type_dict (dict of str: type): Type mapping for all named columns 
+        Args:
+            df (pandas.DataFrame): Target DataFrame.
+            type_dict (dict): Type mapping for all named columns.
         
-        Returns: 
-        pandas.DataFrame: Copy of initial DataFrame with typecasted column
-            values
+        Returns:
+            pandas.DataFrame: Copy of initial DataFrame with typecasted column
+                values.
         """
         formatted_df = df.copy()
         for col_name, dtype in type_dict.items():
@@ -187,8 +174,8 @@ class DataHandler:
         Augments school information to also include estimated 'per-student
         revenue', alongside all other school attributes.
         
-        Returns: 
-        pandas.DataFrame: Resulting DataFrame
+        Returns:
+            pandas.DataFrame: Resulting DataFrame.
         """
         school_info = self.get_school_info()
         district_info = self.get_district_info()
@@ -202,8 +189,8 @@ class DataHandler:
         """
         Read school information from a CSV file into a DataFrame.
         
-        Returns: 
-        pandas.DataFrame: Resulting DataFrame (indexed on "school_id")
+        Returns:
+            pandas.DataFrame: Resulting DataFrame (indexed on "school_id").
         """
         filename = "school_info.csv"
         df = self.__read_file(filename)
@@ -226,8 +213,8 @@ class DataHandler:
         """
         Read district information from a CSV file into a DataFrame.
         
-        Returns: 
-        pandas.DataFrame: Resulting DataFrame (indexed on "district_id")
+        Returns:
+            pandas.DataFrame: Resulting DataFrame (indexed on "district_id").
         """
         filename = "district_info.csv"
         df = self.__read_file(filename)
@@ -249,8 +236,8 @@ class DataHandler:
         """
         Read initial school assignment from a CSV file into a DataFrame.
         
-        Returns: 
-        pandas.DataFrame: Resulting DataFrame (indexed on "school_id")
+        Returns:
+            pandas.DataFrame: Resulting DataFrame (indexed on "school_id").
         """
         filename = "school_assignment.csv"
         df = self.__read_file(filename)
