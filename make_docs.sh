@@ -1,1 +1,1 @@
-cd src/ ; pdoc3 --force --html . -o ../docs
+cd src/ ; pdoc3 --force --html . -o ../docs -c latex_math=True
