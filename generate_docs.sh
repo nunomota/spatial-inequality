@@ -1,0 +1,1 @@
+cd src/ ; pdoc3 --html . -o ../docs
