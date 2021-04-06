@@ -1,3 +1,7 @@
+"""
+Provides definitions (and implementations) for both the Gini Index and the
+Spatial Inequality Index.
+"""
 from itertools import combinations
 
 def gini_index(benefit_vector):

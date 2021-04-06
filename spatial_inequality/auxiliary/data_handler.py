@@ -1,3 +1,7 @@
+"""
+Handler for all direct I/O with raw data files. Serves data parsing, filtering
+and standardization (for use with other modules).
+"""
 import numpy as np
 import pandas as pd
 
