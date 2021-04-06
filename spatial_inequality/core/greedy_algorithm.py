@@ -1,3 +1,7 @@
+"""
+Greedy implementation of our school redistricting algorithm (i.e.,
+`Greedy Partitioning`).
+"""
 import os
 import logging
 import numpy as np
