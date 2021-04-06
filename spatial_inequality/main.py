@@ -1,3 +1,12 @@
+"""
+Example Python script to minimize the Spatial Inequality Index for all states in
+the US. All configuration parameters are set as per our publication.
+
+Paper:
+    Fair Partitioning of Public Resources: Redrawing DistrictBoundary to
+    Minimize Spatial Inequality in SchoolFunding (online at
+    `https://nunomota.github.io/assets/papers/www2021.pdf`).
+"""
 import os
 import json
 import numpy as np
