@@ -1,1 +1,1 @@
-cd src/ ; pdoc3 --force --html . -o ../docs -c latex_math=True ; cd ..
+cd spatial_inequality/ ; pdoc3 --force --html . -o ../docs -c latex_math=True ; cd ..
