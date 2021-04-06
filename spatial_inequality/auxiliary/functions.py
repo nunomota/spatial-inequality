@@ -1,8 +1,7 @@
 """
-This file contains all auxilairy functions for our
-algorithm's implementation. Simple unit tests can be
-found at the bottom, automatically ran when (directly)
-running the script.
+This file implements high-level computations on top of standardized public
+schools' data (e.g., extracting a school's neighbors). Simple unit tests can be
+found at the bottom, automatically ran when (directly) running the script.
 
 NOTE: For all implemented functions in this script, the
 return statements also include an (often redundant) explicit
