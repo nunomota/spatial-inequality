@@ -1,3 +1,7 @@
+"""
+Implements a "lazy heap" data structure, which provides a max-heap behavior but
+uses lazy evaluation for optimized node update and removal.
+"""
 import copy
 
 from heapq import heappush, heappop, heapify

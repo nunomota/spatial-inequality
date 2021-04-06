@@ -1,3 +1,7 @@
+"""
+Dynamic programming abstractions for fast(er) lookup methods and incremental
+updates.
+"""
 import numpy as np
 
 from collections import Counter

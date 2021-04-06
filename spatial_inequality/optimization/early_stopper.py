@@ -1,3 +1,7 @@
+"""
+Implements an "early stopping" termination criterion for our algorithm,
+preventing unnecesary computations when improvements are no longer observed.
+"""
 import numpy as np
 
 class EarlyStopper:

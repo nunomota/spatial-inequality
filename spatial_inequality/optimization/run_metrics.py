@@ -1,3 +1,7 @@
+"""
+Structured information container, to track specified metrics over a single run
+of our algorithm.
+"""
 import json
 import copy
 

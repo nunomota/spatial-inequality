@@ -1,3 +1,7 @@
+"""
+Implements a "holdout queue" data structure, which allows for items to be
+conditionally held out from the results upon dequeing.
+"""
 from queue import Queue
 
 class _HoldoutQueueItemWrapper:

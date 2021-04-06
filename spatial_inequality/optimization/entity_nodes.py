@@ -1,3 +1,7 @@
+"""
+Provides class abstractions to both schools and districts, allowing a more
+intuitive interface with our data.
+"""
 class School:
     """
     Class to represent and single public school in the US and all of its
