@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.9.2" />
 <title>spatial_inequality.auxiliary API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Auxiliary functions and classes to easily parse, filter and explore all of our
+data through simple import statements …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -20,26 +21,110 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Namespace <code>spatial_inequality.auxiliary</code></h1>
+<h1 class="title">Module <code>spatial_inequality.auxiliary</code></h1>
 </header>
 <section id="section-intro">
+<p>Auxiliary functions and classes to easily parse, filter and explore all of our
+data through simple import statements.</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python">from spatial_inequality.auxiliary.functions import *
+from spatial_inequality.auxiliary.inequality import *
+from spatial_inequality.auxiliary.data_handler import *
+
+# Load all data for public schools
+aug_school_info, school_assignment = load_data()
+
+# Get all schools in a given state
+schools_in_alabama = sorted(get_schools_in_state(&quot;Alabama&quot;, school_assignment))
+
+# Get per-student funding for all selected schools
+def get_funding_per_student(school_id):
+    total_students = get_school_total_students(x, aug_school_info)
+    total_funding = get_school_total_funding(x, aug_school_info)
+    return total_funding / total_students
+school_funding_per_student = [
+    get_school_per_student_funding(id) for id in schools_in_alabama
+]
+
+# Define a mapping between a school's id and its idx in the benefit vector
+school_id_to_idx = {id:idx for idx, id in enumerate(schools_in_alabama)}
+school_idx_to_id = {idx:id for id, idx in school_id_to_idx.items()}
+def get_school_neighbours_from_idx(school_idx):
+    school_id = school_idx_to_id[school_idx]
+    neighbour_ids = get_neighbouring_schools(school_id, aug_school_info)
+    return list(map(lambda x: school_id_to_idx[x], neighbour_ids))
+
+# Calculate inequalities
+gini = gini_index(school_funding_per_student)
+spatial = spatial_index(
+    benefit_vector=school_funding_per_student,
+    get_neighbours=get_school_neighbours_from_idx
+)
+</code></pre>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Auxiliary functions and classes to easily parse, filter and explore all of our
+data through simple import statements.
+
+Example:
+    ```python
+    from spatial_inequality.auxiliary.functions import *
+    from spatial_inequality.auxiliary.inequality import *
+    from spatial_inequality.auxiliary.data_handler import *
+    
+    # Load all data for public schools
+    aug_school_info, school_assignment = load_data()
+    
+    # Get all schools in a given state
+    schools_in_alabama = sorted(get_schools_in_state(&#34;Alabama&#34;, school_assignment))
+
+    # Get per-student funding for all selected schools
+    def get_funding_per_student(school_id):
+        total_students = get_school_total_students(x, aug_school_info)
+        total_funding = get_school_total_funding(x, aug_school_info)
+        return total_funding / total_students
+    school_funding_per_student = [
+        get_school_per_student_funding(id) for id in schools_in_alabama
+    ]
+
+    # Define a mapping between a school&#39;s id and its idx in the benefit vector
+    school_id_to_idx = {id:idx for idx, id in enumerate(schools_in_alabama)}
+    school_idx_to_id = {idx:id for id, idx in school_id_to_idx.items()}
+    def get_school_neighbours_from_idx(school_idx):
+        school_id = school_idx_to_id[school_idx]
+        neighbour_ids = get_neighbouring_schools(school_id, aug_school_info)
+        return list(map(lambda x: school_id_to_idx[x], neighbour_ids))
+
+    # Calculate inequalities
+    gini = gini_index(school_funding_per_student)
+    spatial = spatial_index(
+        benefit_vector=school_funding_per_student,
+        get_neighbours=get_school_neighbours_from_idx
+    )
+    ```
+&#34;&#34;&#34;</code></pre>
+</details>
 </section>
 <section>
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
 <dl>
 <dt><code class="name"><a title="spatial_inequality.auxiliary.data_handler" href="data_handler.html">spatial_inequality.auxiliary.data_handler</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Handler for all direct I/O with raw data files. Serves data parsing, filtering
+and standardization (for use with other modules).</p></div>
 </dd>
 <dt><code class="name"><a title="spatial_inequality.auxiliary.functions" href="functions.html">spatial_inequality.auxiliary.functions</a></code></dt>
 <dd>
-<div class="desc"><p>This file contains all auxilairy functions for our
-algorithm's implementation. Simple unit tests can be
-found at the bottom, automatically ran when …</p></div>
+<div class="desc"><p>Provides high-level operations on top of standardized public schools' data
+(e.g., extracting a school's neighbors) …</p></div>
 </dd>
 <dt><code class="name"><a title="spatial_inequality.auxiliary.inequality" href="inequality.html">spatial_inequality.auxiliary.inequality</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Provides definitions (and implementations) for both the Gini Index and the
+Spatial Inequality Index.</p></div>
 </dd>
 </dl>
 </section>
