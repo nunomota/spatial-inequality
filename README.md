@@ -11,7 +11,7 @@ In this repository, we include all the necessary code to calculate the Spatial I
 
 ![Map](https://github.com/nunomota/spatial-inequality/blob/master/assets/redistricting_before_and_after.png?raw=true)
 
-For anyone interested in using (or contributing to) our codebase, we provide complete [documentation](https://nunomota.github.io/spatial-inequality/docs/) of our `spatial_inequality` package. For anyone otherwise interested in visualizing the impact of our algorithm in school redistricting, we also provide an [interactive website](http://redistricting.mpi-sws.org). Also, an in-depth description of the whole algorithm (alongside its temporal complexity) [here](https://github.com/nunomota/spatial-inequality/tree/master/spatial_inequality).
+For anyone interested in using (or contributing to) our codebase, we provide complete [documentation](https://nunomota.github.io/spatial-inequality/docs/) of our `spatial_inequality` package. For anyone otherwise interested in visualizing the impact of our algorithm in school redistricting, we also provide an [interactive website](http://redistricting.mpi-sws.org). Also, an in-depth description of the whole algorithm (alongside its temporal complexity) can be found as a README at [the package's source code directory](https://github.com/nunomota/spatial-inequality/tree/master/spatial_inequality).
 
 ## What is the Spatial Inequality Index?
 

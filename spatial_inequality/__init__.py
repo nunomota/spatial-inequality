@@ -8,5 +8,5 @@ Welcome to the documentation of the Spatial Inequality Index! This package was f
 
 ![Map](https://github.com/nunomota/spatial-inequality/blob/master/assets/redistricting_before_and_after.png?raw=true)
 
-If you landed here by mistake and simply want to see our algorithm in action, you can instead visit our [interactive website](http://redistricting.mpi-sws.org). For anyone interested in contributing to this codebase, feel free to open a pull-request (or an issue) on our [GitHub](https://github.com/nunomota/spatial-inequality) repository. Also, an in-depth description of the whole algorithm (alongside its temporal complexity) [here](https://github.com/nunomota/spatial-inequality/tree/master/spatial_inequality).
+If you landed here by mistake and simply want to see our algorithm in action, you can instead visit our [interactive website](http://redistricting.mpi-sws.org). For anyone interested in contributing to this codebase, feel free to open a pull-request (or an issue) on our [GitHub](https://github.com/nunomota/spatial-inequality) repository. Also, an in-depth description of the whole algorithm (alongside its temporal complexity) can be found as a README at [the package's source code directory](https://github.com/nunomota/spatial-inequality/tree/master/spatial_inequality).
 """
