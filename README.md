@@ -1,8 +1,6 @@
 # Spatial Inequality Index
 
-<blockquote>
-    Measure if *similar* individuals are being *similarly* treated.
-</blockquote>
+“Measure if *similar* individuals are being *similarly* treated.”
 
 [![Publication](https://img.shields.io/badge/Publication-The%20Web%20Conference%202021-informational?logo=Google%20Scholar)](https://nunomota.github.io/assets/papers/www2021.pdf)
 [![Documentation](https://img.shields.io/badge/Documentation-v1.0-orange?logo=Read%20the%20Docs)](https://nunomota.github.io/spatial-inequality/docs/)
