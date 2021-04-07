@@ -24,7 +24,7 @@ The `Spatial Inequality Index`, as the name suggests, is an inequality index tha
 Take a population of *N* individuals. For each individual *i* in the population, define their neighborhood *N<sub>i</sub>* (i.e., which other individuals should be considered as *similar*) and their benefit *y<sub>i</sub>* (i.e., how much of a given *resource* they have). The full index can then be calculated as such:
 
 <p align="center">
-<img src="https://render.githubusercontent.com/render/math?math=\frac{\sum_{i=1}^{N}%20\frac{1}{N_i}%20\sum_{j=1}^{N_i}%20\left|%20y_i%20-%20y_j%20\right|}{\sum_{i=1}^{N}%20y_i}">
+<img style="background-color:white;" src="https://render.githubusercontent.com/render/math?math=\frac{\sum_{i=1}^{N}%20\frac{1}{N_i}%20\sum_{j=1}^{N_i}%20\left|%20y_i%20-%20y_j%20\right|}{\sum_{i=1}^{N}%20y_i}">
 </p>
 
 The higher the difference observed between immediate neighbors, the higher the observed spatial inequality. You can find its (Python) implementation in both our [repository](https://github.com/nunomota/spatial-inequality/blob/master/spatial_inequality/auxiliary/inequality.py) and [documentation](https://nunomota.github.io/spatial-inequality/docs/auxiliary/inequality.html).
